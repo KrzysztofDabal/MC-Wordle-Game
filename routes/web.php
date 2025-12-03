@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Games\Mob\MobGuessingController;
+use App\Http\Controllers\Games\Block\BlockGuessingController;
+use App\Http\Controllers\Games\Item\ItemGuessingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,3 +23,9 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/mobguesser', [MobGuessingController::class, 'index'])->name('mobguesser');
+
+Route::get('/blockguesser', [BlockGuessingController::class, 'index'])->name('blockguesser');
+
+Route::get('/itemguesser', [ItemGuessingController::class, 'index'])->name('itemguesser');
