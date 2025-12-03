@@ -12,4 +12,9 @@ class MobGuessingController extends Controller
         $mobs = Mob::all();
         return view('games.mobs', compact('mobs'));
     }
+
+    public function get_daily_mob(){
+        $daily_mob = Mob
+        return
+    }
 }

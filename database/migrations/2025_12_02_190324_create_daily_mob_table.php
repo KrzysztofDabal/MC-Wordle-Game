@@ -18,6 +18,7 @@ return new class extends Migration
             $table->integer('version');
             $table->integer('mob_id');
             $table->string('mob_name');
+            $table->date('date');
             $table->timestamps();
         });
     }
