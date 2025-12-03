@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Games\Mob;
 use App\Http\Controllers\Controller;
 use App\Models\Mob;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class MobGuessingController extends Controller
 {
@@ -14,7 +15,6 @@ class MobGuessingController extends Controller
     }
 
     public function get_daily_mob(){
-        $daily_mob = Mob
-        return
+        return Mob::latest('id')->first();
     }
 }

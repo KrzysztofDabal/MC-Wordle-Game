@@ -5,20 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Mob extends Model
+class DailyMob extends Model
 {
     use HasFactory;
 
     protected $table = 'mobs';
 
     protected $fillable = [
-        'name',
-        'graphic',
-        'game_version',
-        'health',
-        'height',
-        'behavior',
-        'spawn',
-        'classification'
+        'version',
+        'mob_id',
+        'mob_name',
+        'date'
     ];
 }
