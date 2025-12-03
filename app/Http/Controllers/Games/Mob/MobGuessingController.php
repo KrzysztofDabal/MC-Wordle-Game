@@ -15,6 +15,54 @@ class MobGuessingController extends Controller
     }
 
     public function get_daily_mob(){
-        return Mob::latest('id')->first();
+        $dailymob = Mob::latest('id')->first();
+        $mob = Mob::find($dailymob->mob_id)->first();
+        return $mob;
+    }
+
+    public function check_guess(Request $request){
+        $request->validate([
+            'mob_id' => 'required|exist:mobs, id'
+        ]);
+
+        $result = $this->compare_guess_daily($request->mob_id);
+
+        return response()->json($result);
+    }
+
+    public function compare_guess_daily($mob_id){
+        $guess = Mob::find($mob_id)->first();
+        $daily = $this->get_daily_mob();
+
+        
+        $guess_spawn = is_string($guess->spawn) ? json_decode($guess->spawn, true) : $guess->spawn;
+        $daily_spawn = is_string($daily->spawn) ? json_decode($daily->spawn, true) : $daily->spawn;
+
+        $result = [
+            'name' => $guess->name,
+            'name_is_correct' => $guess->name === $daily->name,
+
+            'graphic' => $guess->graphic,
+            
+            'game_version' => $guess->game_version,
+            'game_version_is_correct' => $guess->game_version === $daily->game_version,
+
+            'health' => $guess->health,
+            'health_is_correct' => (int)$guess->health === (int)$daily->health,
+
+            'height' => $guess->height,
+            'height_is_correct' => (float)$guess->height === (float)$daily->height,
+
+            'behavior' => $guess->behavior,
+            'behavior_is_correct' => $guess->behavior === $daily->behavior,
+
+            'spawn' => $guess->spawn,
+            'spawn_is_correct' => count(array_intersect($guess_spawn, $daily_spawn)) > 0,
+            
+            'classification' => $guess->classification,
+            'classification_is_correct' => $guess->classification === $daily->classification
+        ];
+
+        return $result;
     }
 }

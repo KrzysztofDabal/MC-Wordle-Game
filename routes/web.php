@@ -25,6 +25,7 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/mobguesser', [MobGuessingController::class, 'index'])->name('mobguesser');
+Route::post('/mobguesser/check', [MobGuessingController::class, 'check_guess'])->name('mobguesser.check');
 
 Route::get('/blockguesser', [BlockGuessingController::class, 'index'])->name('blockguesser');
 
