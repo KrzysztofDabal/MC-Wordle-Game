@@ -3,6 +3,7 @@
 @section('content')
 
 <script>
+    let mobNames;
     $(document).ready(function (){
         console.log("JS działa!");
         // TWORZENEI LOCAL STORAGE
@@ -18,11 +19,12 @@
             console.log("mobGuesses istnieje", mobGuesses);
         }
 
+
         $.ajax({
             url: '/mobguesser/get_mobs',
             method: 'GET',
             success: function (data){
-                let mobNames = data.map(map => ({
+                mobNames = data.map(map => ({
                     label: map.name,
                     value: map.id
                 }));
@@ -31,11 +33,32 @@
                     source: mobNames,
                     select: function(event, ui) {
                         console.log('Wybrano ID:', ui.item.value);
+                        let mobId = ui.item.value;
+                        checkMob(mobId);
                     }
                 });
             }
         });
     });
+
+    function checkMob(mobId){
+        console.log('Wywołano funkcje checkMob', mobId)
+        $.ajax({
+            url: '/mobguesser/check_guess',
+            method: 'POST',
+            data: {
+                mob_id: mobId,
+                // _token: $('meta[name="csrf-token"]').attr('content')
+            },
+            success: function(response){
+                console.log('Odpowiedź backendu', response);
+                //localstorage function
+            },
+            error: function(xhr){
+                console.log('Backend nie odpowiada: ', xhr.responseText)
+            }
+        });
+    }
 </script>
 
 <div class="container">

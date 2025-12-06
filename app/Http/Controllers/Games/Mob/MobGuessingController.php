@@ -9,30 +9,32 @@ use Illuminate\Support\Facades\DB;
 
 class MobGuessingController extends Controller
 {
-    public function index(){
+    public function index(Request $request){
         $mobs = Mob::all();
         return view('games.mobs', compact('mobs'));
     }
 
-    public function get_daily_mob(){
+    public function get_daily_mob(Request $request){
         $dailymob = Mob::latest('id')->first();
         $mob = Mob::find($dailymob->mob_id)->first();
         return $mob;
     }
 
-    public function get_mobs(){
-        return Mob::orderBy('name')->get(['id', 'name']);
+    public function get_mobs(Request $request){
+        return Mob::orderBy('name')->get();
     }
 
     public function check_guess(Request $request){
-        $request->validate([
-            'mob_id' => 'required|exist:mobs, id'
+        return response()->json([
+            'received_id' => $request->mob_id
         ]);
-
-        $result = $this->compare_guess_daily($request->mob_id);
-
-        return response()->json($result);
     }
+
+        // $request->validate([
+        //     'mob_id' => 'required|exist:mobs, id'
+        // ]);
+
+        // $result = $this->compare_guess_daily($request->mob_id);
 
     public function compare_guess_daily($mob_id){
         $guess = Mob::find($mob_id)->first();

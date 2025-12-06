@@ -20,13 +20,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+// Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/mobguesser', [MobGuessingController::class, 'index'])->name('mobguesser');
-Route::post('/mobguesser/check', [MobGuessingController::class, 'check_guess'])->name('mobguesser.check');
-Route::get('/mobguesser/get_mobs', [MobGuessingController::class, 'get_mobs'])->name('mobguesser.ge_mobs');
+Route::prefix('/mobguesser')->group(function(){
+    Route::get('', [MobGuessingController::class, 'index'])->name('mobguesser');
+    Route::post('/check_guess', [MobGuessingController::class, 'check_guess'])->name('mobguesser.check_guess');
+    Route::get('/get_mobs', [MobGuessingController::class, 'get_mobs'])->name('mobguesser.ge_mobs');
+});
 
 Route::get('/blockguesser', [BlockGuessingController::class, 'index'])->name('blockguesser');
 
