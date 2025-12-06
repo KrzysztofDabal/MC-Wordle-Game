@@ -20,6 +20,10 @@ class MobGuessingController extends Controller
         return $mob;
     }
 
+    public function get_mobs(){
+        return Mob::orderBy('name')->get(['id', 'name']);
+    }
+
     public function check_guess(Request $request){
         $request->validate([
             'mob_id' => 'required|exist:mobs, id'
