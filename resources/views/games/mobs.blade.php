@@ -59,7 +59,9 @@
             mobGuesses = JSON.parse(mobGuesses);
 
             mobGuesses[1].guesses.push({name: guess.name});
-            mobGuesses[2].is_guessed = guess.is_guess_corect;
+            if(guess.is_guess_corect){
+                mobGuesses[2].is_guessed = guess.is_guess_corect;
+            }
             localStorage.setItem('mobGuesses', JSON.stringify(mobGuesses));
             console.log("mobGuesses istnieje", mobGuesses);
         }
