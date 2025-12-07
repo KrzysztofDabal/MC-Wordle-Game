@@ -9,7 +9,7 @@ class DailyMob extends Model
 {
     use HasFactory;
 
-    protected $table = 'mobs';
+    protected $table = 'daily_mob';
 
     protected $fillable = [
         'version',

@@ -4,18 +4,19 @@
 
 <script>
     let mobNames;
+    let mobGuesses;
     $(document).ready(function (){
         console.log("JS działa!");
-        // TWORZENEI LOCAL STORAGE
-        // // localStorage.setItem('mobGuesses', JSON.stringify([{version:1},{guesses:[{id:1}]},{corect:false}]));
-        let mobGuesses = localStorage.getItem('mobGuesses');
+        mobGuesses = localStorage.getItem('mobGuesses');
         if(!mobGuesses){
             console.log("mobGuesses nie istnieje");
         } else{
             mobGuesses = JSON.parse(mobGuesses);
-            // DODAWANIE I ZAPISYWANIE NOWEGO ELEMENTU DO LISTY
-            // // mobGuesses[1].guesses.push({id:2});
-            // // localStorage.setItem('mobGuesses', JSON.stringify(mobGuesses));
+
+            // localStorage.removeItem('mobGuesses');
+            if(mobGuesses.version == 2){
+                console.log('Poprawna wersja');
+            }
             console.log("mobGuesses istnieje", mobGuesses);
         }
 
@@ -41,6 +42,30 @@
         });
     });
 
+    function add_guess_to_ls(guess){
+        mobGuesses = localStorage.getItem('mobGuesses');
+        if(!mobGuesses){
+            console.log("mobGuesses nie istnieje");
+            let new_data = [
+                {version: guess.version},
+                {guesses: [
+                    {name: guess.name}
+                ]},
+                {is_guessed: guess.is_guess_corect}
+            ]
+            localStorage.setItem('mobGuesses', JSON.stringify(new_data));
+            console.log("Utworzono mobGuesses", JSON.parse(mobGuesses));
+        } else{
+            mobGuesses = JSON.parse(mobGuesses);
+
+            mobGuesses[1].guesses.push({name: guess.name});
+            mobGuesses[2].is_guessed = guess.is_guess_corect;
+            localStorage.setItem('mobGuesses', JSON.stringify(mobGuesses));
+            console.log("mobGuesses istnieje", mobGuesses);
+        }
+        return;
+    }
+
     function checkMob(mobId){
         console.log('Wywołano funkcje checkMob', mobId)
         $.ajax({
@@ -52,7 +77,7 @@
             },
             success: function(response){
                 console.log('Odpowiedź backendu', response);
-                //localstorage function
+                add_guess_to_ls(response)
             },
             error: function(xhr){
                 console.log('Backend nie odpowiada: ', xhr.responseText)
