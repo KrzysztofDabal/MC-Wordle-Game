@@ -37,7 +37,7 @@ class MobGuessingController extends Controller
         ]);
     }
 
-    public function compare_guess_daily($mob_id){
+    public function compare_to_daily($mob_id){
         $guess = Mob::find($mob_id);
         $daily = $this->get_daily_mob();
         $daily_mob = Mob::find($daily->mob_id);

@@ -27,6 +27,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::prefix('/mobguesser')->group(function(){
     Route::get('', [MobGuessingController::class, 'index'])->name('mobguesser');
     Route::post('/check_guess', [MobGuessingController::class, 'check_guess'])->name('mobguesser.check_guess');
+    Route::post('/compare_to_daily', [MobGuessingController::class, 'compare_to_daily'])->name('mobguesser.compare_to_daily');
     Route::get('/get_mobs', [MobGuessingController::class, 'get_mobs'])->name('mobguesser.ge_mobs');
 });
 
