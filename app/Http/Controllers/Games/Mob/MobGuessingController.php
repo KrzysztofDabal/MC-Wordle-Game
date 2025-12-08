@@ -11,8 +11,9 @@ use Illuminate\Support\Facades\DB;
 class MobGuessingController extends Controller
 {
     public function index(Request $request){
-        $mobs = Mob::all();
-        return view('games.mobs', compact('mobs'));
+        $daily_mob = DailyMob::latest('id')->first();
+        $version = $daily_mob->version;
+        return view('games.mobs', compact('version'));
     }
 
     public function get_daily_mob(){

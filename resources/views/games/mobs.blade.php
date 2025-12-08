@@ -6,18 +6,20 @@
     let mobNames;
     let mobGuesses;
     $(document).ready(function (){
-        console.log("JS działa!");
+        const version = {{ $version }};
+        console.log("JS działa! Aktualna versia gry to ", version);
         mobGuesses = localStorage.getItem('mobGuesses');
         if(!mobGuesses){
             console.log("mobGuesses nie istnieje");
         } else{
             mobGuesses = JSON.parse(mobGuesses);
 
-            // localStorage.removeItem('mobGuesses');
-            if(mobGuesses.version == 2){
-                console.log('Poprawna wersja');
+            if(mobGuesses[0].version == version){
+                console.log("Poprawna wersja mobGuesses", mobGuesses);
+            } else{
+                localStorage.removeItem('mobGuesses');
+                console.log("Niepoprawna wersja mobGuesses został usunięty");
             }
-            console.log("mobGuesses istnieje", mobGuesses);
         }
 
 
