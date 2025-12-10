@@ -5,20 +5,23 @@
 <script>
     let mobNames;
     let mobGuesses;
+    let mobStorage;
     $(document).ready(function (){
-        const version = {{ $version }};
-        console.log("JS działa! Aktualna versia gry to ", version);
-        mobGuesses = localStorage.getItem('mobGuesses');
-        if(!mobGuesses){
-            console.log("mobGuesses nie istnieje");
+        mobStorage = localStorage.getItem('mobGuesses');
+        if(!mobStorage){
+            console.log("Start strony mobGuesses nie istnieje");
         } else{
-            mobGuesses = JSON.parse(mobGuesses);
+            mobGuesses = JSON.parse(mobStorage);
 
-            if(!mobGuesses[0].version == version){
+            if(mobGuesses[0].version != {{ $version }}){
+                console.log('mobGuesses[0].version: ', mobGuesses[0].version);
+                console.log('{{ $version }}: ', {{ $version }});
+                localStorage.removeItem('mobGuesses');
             } else{
                 mobGuesses[1].guesses.forEach(guess => {
-                    guesses_table(guess.name)
+                    guesses_table(guess.name);
                 });
+                console.log('Start, guessed: ');
             }
         }
 
@@ -42,9 +45,22 @@
                         return false;
                     }
                 });
+                if(mobGuesses){
+                    check_if_guessed(mobGuesses[2].is_guessed);
+                }
             }
         });
     });
+
+    function check_if_guessed(is_guessed){
+        console.log('is_guessed = ', is_guessed);
+        if(is_guessed){
+            console.log('Wywołano blokadę');
+            $('#mobSearch').prop('disabled', true);
+            $('#mobSearch').autocomplete("disable");
+        }
+        return;
+    }
 
     function guesses_table(guess_name){
         const tbody = document.querySelector('#guesses_tab tbody');
@@ -57,7 +73,7 @@
             },
             success: function(response){
                 const name_class = response.name_is_correct ? "table-success" : "table-danger";
-                const version_class = response.version_is_correct ? "table-success" : "table-danger";
+                const version_class = response.game_version_is_correct ? "table-success" : "table-danger";
                 const health_class = response.health_is_correct ? "table-success" : "table-danger";
                 const height_class = response.height_is_correct ? "table-success" : "table-danger";
                 const behavior_class = response.behavior_is_correct ? "table-success" : "table-danger";
@@ -66,7 +82,7 @@
                 const row = document.createElement("tr");
                 row.innerHTML = `
                     <td class="${name_class}">${response.name}</td>
-                    <td class="${version_class}">${response.version}</td>
+                    <td class="${version_class}">${response.game_version}</td>
                     <td class="${health_class}">${response.health}</td>
                     <td class="${height_class}">${response.height}</td>
                     <td class="${behavior_class}">${response.behavior}</td>
@@ -76,10 +92,12 @@
                 tbody.prepend(row);
             }
         });
+        return;
     }
 
     function add_guess_to_ls(guess){
-        mobGuesses = localStorage.getItem('mobGuesses');
+        mobStorage = localStorage.getItem('mobGuesses');
+        mobGuesses = JSON.parse(mobStorage); 
         if(!mobGuesses){
             console.log("mobGuesses nie istnieje");
             let new_data = [
@@ -93,7 +111,7 @@
             console.log("Utworzono mobGuesses");
         } else{
             console.log("mobGuesses istnieje");
-            mobGuesses = JSON.parse(mobGuesses);
+            mobGuesses = JSON.parse(mobStorage);
 
             let alreadyguessed = mobGuesses[1].guesses.some(g => g.name === guess.name);
             if(!alreadyguessed){
@@ -102,13 +120,11 @@
                     mobGuesses[2].is_guessed = guess.is_guess_corect;
                 }
                 localStorage.setItem('mobGuesses', JSON.stringify(mobGuesses));
-            }
-            else{
-                console.log('Już istnieje taka odpowiedź');
+                
+                guesses_table(guess.name);
             }
         }
-        
-        guesses_table(guess.name);
+        check_if_guessed(guess.is_guess_corect);
         return;
     }
 
@@ -121,13 +137,13 @@
                 mob_id: mobId,
             },
             success: function(response){
-                console.log('Odpowiedź backendu', response);
-                add_guess_to_ls(response)
+                add_guess_to_ls(response);
             },
             error: function(xhr){
                 console.log('Backend nie odpowiada: ', xhr.responseText)
             }
         });
+        return;
     }
 </script>
 
