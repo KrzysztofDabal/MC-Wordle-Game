@@ -14,15 +14,15 @@
         } else{
             mobGuesses = JSON.parse(mobGuesses);
 
-            if(mobGuesses[0].version == version){
-                console.log("Poprawna wersja mobGuesses", mobGuesses);
+            if(!mobGuesses[0].version == version){
             } else{
-                localStorage.removeItem('mobGuesses');
-                console.log("Niepoprawna wersja mobGuesses został usunięty");
+                mobGuesses[1].guesses.forEach(guess => {
+                    guesses_table(guess.name)
+                });
             }
         }
 
-
+        // autocomplete filling
         $.ajax({
             url: '/mobguesser/get_mobs',
             method: 'GET',
@@ -46,15 +46,36 @@
         });
     });
 
-    function guesses_table(guess){
-        console.log('wywołanie dodawanie wiersza do tabeli');
+    function guesses_table(guess_name){
         const tbody = document.querySelector('#guesses_tab tbody');
         
-        const row = document.createElement("tr");
-        row.innerHTML = `
-            <td>${guess.name}</td>
-        `;
-        tbody.prepend(row);
+        $.ajax({
+            url: '/mobguesser/compare_to_daily',
+            method: 'POST',
+            data: {
+                guess_to_compare: guess_name
+            },
+            success: function(response){
+                const name_class = response.name_is_correct ? "table-success" : "table-danger";
+                const version_class = response.version_is_correct ? "table-success" : "table-danger";
+                const health_class = response.health_is_correct ? "table-success" : "table-danger";
+                const height_class = response.height_is_correct ? "table-success" : "table-danger";
+                const behavior_class = response.behavior_is_correct ? "table-success" : "table-danger";
+                const spawn_class = response.spawn_is_correct ? "table-success" : "table-danger";
+                const classification_class = response.classification_is_correct ? "table-success" : "table-danger";
+                const row = document.createElement("tr");
+                row.innerHTML = `
+                    <td class="${name_class}">${response.name}</td>
+                    <td class="${version_class}">${response.version}</td>
+                    <td class="${health_class}">${response.health}</td>
+                    <td class="${height_class}">${response.height}</td>
+                    <td class="${behavior_class}">${response.behavior}</td>
+                    <td class="${spawn_class}">${Array.isArray(response.spawn) ? response.spawn.join(', ') : JSON.parse(response.spawn).join(', ')}</td>
+                    <td class="${classification_class}">${response.classification}</td>
+                `;
+                tbody.prepend(row);
+            }
+        });
     }
 
     function add_guess_to_ls(guess){
@@ -87,7 +108,7 @@
             }
         }
         
-        guesses_table(guess);
+        guesses_table(guess.name);
         return;
     }
 
@@ -124,9 +145,12 @@
                         <thead class="table-active"> 
                             <tr>
                                 <th>Name</th>
-                                <!-- <th>Health</th>
+                                <th>Version</th>
+                                <th>Health</th>
                                 <th>Height</th>
-                                <th>Nature</th> -->
+                                <th>Behavior</th>
+                                <th>Spawn</th>
+                                <th>Classification</th>
                             </tr>
                         </thead>
                         <tbody>

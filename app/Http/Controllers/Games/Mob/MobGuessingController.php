@@ -26,9 +26,7 @@ class MobGuessingController extends Controller
     }
 
     public function check_guess(Request $request){
-        // $result = $this->compare_guess_daily($request->mob_id);
-
-        $guess = Mob::find($request->mob_id);
+        $guess = Mob::where('id', '=', $request->mob_id)->firstOrFail();
         $daily = $this->get_daily_mob();
         $result = $guess->id === $daily->mob_id;
         return response()->json([
@@ -38,8 +36,8 @@ class MobGuessingController extends Controller
         ]);
     }
 
-    public function compare_to_daily($mob_id){
-        $guess = Mob::find($mob_id);
+    public function compare_to_daily(Request $request){
+        $guess = Mob::where('name', '=', $request->guess_to_compare)->firstOrFail();
         $daily = $this->get_daily_mob();
         $daily_mob = Mob::find($daily->mob_id);
 
@@ -72,6 +70,6 @@ class MobGuessingController extends Controller
             'classification_is_correct' => $guess->classification === $daily_mob->classification
         ];
 
-        return $result;
+        return response()->json($result);
     }
 }
