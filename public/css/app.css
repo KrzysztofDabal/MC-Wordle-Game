@@ -1,0 +1,12 @@
+.btn-xl {
+    width: 224px;
+    height: 80px;
+    font-size: 2rem !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    padding: 0px !important;
+    line-height: 1 !important;
+    margin: 10px;
+}
