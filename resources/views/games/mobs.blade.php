@@ -6,26 +6,27 @@
     let mobNames;
     let mobGuesses;
     let mobStorage;
+    const game_version = {{ $version }};
     $(document).ready(function (){
         mobStorage = localStorage.getItem('mobGuesses');
         if(!mobStorage){
-            console.log("Start strony mobGuesses nie istnieje");
+            // console.log("Start strony mobGuesses nie istnieje");
         } else{
             mobGuesses = JSON.parse(mobStorage);
 
-            if(mobGuesses[0].version != {{ $version }}){
-                console.log('mobGuesses[0].version: ', mobGuesses[0].version);
-                console.log('{{ $version }}: ', {{ $version }});
+            if(mobGuesses[0].version != game_version){
+                // console.log('mobGuesses[0].version: ', mobGuesses[0].version);
+                // console.log('{{ $version }}: ', game_version);
                 localStorage.removeItem('mobGuesses');
             } else{
                 mobGuesses[1].guesses.forEach(guess => {
                     guesses_table(guess.name);
                 });
-                console.log('Start, guessed: ');
+                // console.log('Start, guessed: ');
             }
         }
 
-        // autocomplete filling
+        // --AUTOCOMPLETE INITIALIZATION--
         $.ajax({
             url: '/mobguesser/get_mobs',
             method: 'GET',
@@ -38,11 +39,11 @@
                 $('#mobSearch').autocomplete({
                     source: mobNames,
                     select: function(event, ui) {
-                        console.log('Wybrano ID:', ui.item.value);
-                        let mobId = ui.item.value;
-                        check_mob(mobId);
+                        // console.log('Wybrano ID:', ui.item.value);
+                        // let mobId = ui.item.value;
+                        check_mob(ui.item.value);
                         $('#mobSearch').val('');
-                        return false;
+                        event.preventDefault();
                     }
                 });
                 if(mobGuesses){
@@ -53,9 +54,9 @@
     });
 
     function check_if_guessed(is_guessed){
-        console.log('is_guessed = ', is_guessed);
+        // console.log('is_guessed = ', is_guessed);
         if(is_guessed){
-            console.log('Wywołano blokadę');
+            // console.log('Wywołano blokadę');
             $('#mobSearch').prop('disabled', true);
             $('#mobSearch').autocomplete("disable");
         }
@@ -99,7 +100,7 @@
         mobStorage = localStorage.getItem('mobGuesses');
         mobGuesses = JSON.parse(mobStorage); 
         if(!mobGuesses){
-            console.log("mobGuesses nie istnieje");
+            // console.log("mobGuesses nie istnieje");
             let new_data = [
                 {version: guess.version},
                 {guesses: [
@@ -108,9 +109,9 @@
                 {is_guessed: guess.is_guess_corect}
             ]
             localStorage.setItem('mobGuesses', JSON.stringify(new_data));
-            console.log("Utworzono mobGuesses");
+            // console.log("Utworzono mobGuesses");
         } else{
-            console.log("mobGuesses istnieje");
+            // console.log("mobGuesses istnieje");
             mobGuesses = JSON.parse(mobStorage);
 
             let alreadyguessed = mobGuesses[1].guesses.some(g => g.name === guess.name);
@@ -129,7 +130,7 @@
     }
 
     function check_mob(mobId){
-        console.log('Wywołano funkcje checkMob', mobId)
+        // console.log('Wywołano funkcje checkMob', mobId)
         $.ajax({
             url: '/mobguesser/check_guess',
             method: 'POST',
@@ -140,7 +141,7 @@
                 add_guess_to_ls(response);
             },
             error: function(xhr){
-                console.log('Backend nie odpowiada: ', xhr.responseText)
+                // console.log('Backend nie odpowiada: ', xhr.responseText)
             }
         });
         return;
