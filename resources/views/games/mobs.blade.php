@@ -6,6 +6,7 @@
     let mobNames;
     let mobGuesses;
     let mobStorage;
+    const mobsList = @json($mobs);
     const game_version = {{ $version }};
     $(document).ready(function (){
         mobStorage = localStorage.getItem('mobGuesses');
@@ -27,20 +28,15 @@
         }
 
         // --AUTOCOMPLETE INITIALIZATION--
-        $.ajax({
-            url: '/mobguesser/get_mobs',
-            method: 'GET',
-            success: function (data){
-                mobNames = data.map(map => ({
+        mobNames = mobsList.map(map => ({
                     label: map.name,
                     value: map.id
                 }));
-
-                $('#mobSearch').autocomplete({
+                console.log(mobNames);
+        $('#mobSearch').autocomplete({
                     source: mobNames,
                     select: function(event, ui) {
                         // console.log('Wybrano ID:', ui.item.value);
-                        // let mobId = ui.item.value;
                         check_mob(ui.item.value);
                         $('#mobSearch').val('');
                         event.preventDefault();
@@ -49,8 +45,30 @@
                 if(mobGuesses){
                     check_if_guessed(mobGuesses[2].is_guessed);
                 }
-            }
-        });
+        // $.ajax({
+        //     url: '/mobguesser/get_mobs',
+        //     method: 'GET',
+        //     success: function (data){
+        //         mobNames = data.map(map => ({
+        //             label: map.name,
+        //             value: map.id
+        //         }));
+
+        //         $('#mobSearch').autocomplete({
+        //             source: mobNames,
+        //             select: function(event, ui) {
+        //                 // console.log('Wybrano ID:', ui.item.value);
+        //                 // let mobId = ui.item.value;
+        //                 check_mob(ui.item.value);
+        //                 $('#mobSearch').val('');
+        //                 event.preventDefault();
+        //             }
+        //         });
+        //         if(mobGuesses){
+        //             check_if_guessed(mobGuesses[2].is_guessed);
+        //         }
+        //     }
+        // });
     });
 
     function check_if_guessed(is_guessed){
@@ -122,9 +140,9 @@
                 }
                 localStorage.setItem('mobGuesses', JSON.stringify(mobGuesses));
                 
-                guesses_table(guess.name);
-            }
+            } else {return;}
         }
+        guesses_table(guess.name);
         check_if_guessed(guess.is_guess_corect);
         return;
     }
@@ -152,10 +170,10 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('WITAJ') }}</div>
+                <div class="card-header">{{ __('Welcome') }}</div>
 
                 <div class="card-body">
-                    Mobki
+                    Mobs
                     <input type="text" id="mobSearch" placeholder="Wpisz nazwę moba..." class="form-control">
 
                     <table class="table table-bordered" id="guesses_tab">

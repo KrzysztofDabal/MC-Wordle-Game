@@ -10,3 +10,12 @@
     line-height: 1 !important;
     margin: 10px;
 }
+
+body {
+    background-color: #1a1a1a !important;
+    background-image: url('/img/background.jpg') !important;
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-attachment: fixed !important;
+}
