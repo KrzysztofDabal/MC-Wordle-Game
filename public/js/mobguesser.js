@@ -1,17 +1,7 @@
-@extends('layouts.app')
 
-@section('content')
-<script>
-    const mobsList = @json($mobs);
-    const game_version = {{ $version }};
-</script>
-<script src="{{ asset('js/mobguesser.js') }}"></script>
-<!-- <script>
     let mobNames;
     let mobGuesses;
     let mobStorage;
-    const mobsList = @json($mobs);
-    const game_version = {{ $version }};
     $(document).ready(function (){
         mobStorage = localStorage.getItem('mobGuesses');
         if(!mobStorage){
@@ -49,30 +39,6 @@
                 if(mobGuesses){
                     check_if_guessed(mobGuesses[2].is_guessed);
                 }
-        // $.ajax({
-        //     url: '/mobguesser/get_mobs',
-        //     method: 'GET',
-        //     success: function (data){
-        //         mobNames = data.map(map => ({
-        //             label: map.name,
-        //             value: map.id
-        //         }));
-
-        //         $('#mobSearch').autocomplete({
-        //             source: mobNames,
-        //             select: function(event, ui) {
-        //                 // console.log('Wybrano ID:', ui.item.value);
-        //                 // let mobId = ui.item.value;
-        //                 check_mob(ui.item.value);
-        //                 $('#mobSearch').val('');
-        //                 event.preventDefault();
-        //             }
-        //         });
-        //         if(mobGuesses){
-        //             check_if_guessed(mobGuesses[2].is_guessed);
-        //         }
-        //     }
-        // });
     });
 
     function check_if_guessed(is_guessed){
@@ -168,36 +134,3 @@
         });
         return;
     }
-</script> -->
-
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Welcome') }}</div>
-
-                <div class="card-body">
-                    Mobs
-                    <input type="text" id="mobSearch" placeholder="Wpisz nazwę moba..." class="form-control">
-
-                    <table class="table table-bordered" id="guesses_tab">
-                        <thead class="table-active"> 
-                            <tr>
-                                <th>Name</th>
-                                <th>Version</th>
-                                <th>Health</th>
-                                <th>Height</th>
-                                <th>Behavior</th>
-                                <th>Spawn</th>
-                                <th>Classification</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-@endsection
