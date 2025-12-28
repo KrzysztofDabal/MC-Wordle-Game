@@ -11,8 +11,9 @@
 
             if(mobGuesses[0].version != game_version){
                 // console.log('mobGuesses[0].version: ', mobGuesses[0].version);
-                // console.log('{{ $version }}: ', game_version);
                 localStorage.removeItem('mobGuesses');
+                mobStorage = null;
+                mobGuesses = null;
             } else{
                 mobGuesses[1].guesses.forEach(guess => {
                     guesses_table(guess.name);
@@ -26,27 +27,30 @@
                     label: map.name,
                     value: map.id
                 }));
-                console.log(mobNames);
+                // console.log(mobNames);
         $('#mobSearch').autocomplete({
-                    source: mobNames,
-                    select: function(event, ui) {
-                        // console.log('Wybrano ID:', ui.item.value);
-                        check_mob(ui.item.value);
-                        $('#mobSearch').val('');
-                        event.preventDefault();
-                    }
-                });
-                if(mobGuesses){
-                    check_if_guessed(mobGuesses[2].is_guessed);
-                }
+            source: mobNames,
+            select: function(event, ui) {
+                // console.log('Wybrano ID:', ui.item.value);
+                check_mob(ui.item.value);
+                $('#mobSearch').val('');
+                event.preventDefault();
+            }
+        });
+        if(mobGuesses){
+            check_if_guessed(mobGuesses[2].is_guessed);
+        } else {
+            $('#mobSearch').prop('disabled', false).autocomplete("enable");
+        }
     });
 
     function check_if_guessed(is_guessed){
         // console.log('is_guessed = ', is_guessed);
         if(is_guessed){
             // console.log('Wywołano blokadę');
-            $('#mobSearch').prop('disabled', true);
-            $('#mobSearch').autocomplete("disable");
+            $('#mobSearch').prop('disabled', true).autocomplete("disable");
+        } else {
+            $('#mobSearch').prop('disabled', false).autocomplete("enable");
         }
         return;
     }
