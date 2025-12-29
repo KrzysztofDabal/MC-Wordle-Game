@@ -173,30 +173,23 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Welcome') }}</div>
+            <input type="text" id="mobSearch" placeholder="Wpisz nazwę moba..." class="guess_input">
 
-                <div class="card-body">
-                    Mobs
-                    <input type="text" id="mobSearch" placeholder="Wpisz nazwę moba..." class="form-control">
-
-                    <table class="table table-bordered" id="guesses_tab">
-                        <thead class="table-active"> 
-                            <tr>
-                                <th>Name</th>
-                                <th>Version</th>
-                                <th>Health</th>
-                                <th>Height</th>
-                                <th>Behavior</th>
-                                <th>Spawn</th>
-                                <th>Classification</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+            <table class="inventory" id="guesses_tab">
+                <thead class=""> 
+                    <tr>
+                        <th>Name</th>
+                        <th>Version</th>
+                        <th>Health</th>
+                        <th>Height</th>
+                        <th>Behavior</th>
+                        <th>Spawn</th>
+                        <th>Classification</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>

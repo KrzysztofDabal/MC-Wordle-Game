@@ -65,13 +65,13 @@
                 guess_to_compare: guess_name
             },
             success: function(response){
-                const name_class = response.name_is_correct ? "table-success" : "table-danger";
-                const version_class = response.game_version_is_correct ? "table-success" : "table-danger";
-                const health_class = response.health_is_correct ? "table-success" : "table-danger";
-                const height_class = response.height_is_correct ? "table-success" : "table-danger";
-                const behavior_class = response.behavior_is_correct ? "table-success" : "table-danger";
-                const spawn_class = response.spawn_is_correct ? "table-success" : "table-danger";
-                const classification_class = response.classification_is_correct ? "table-success" : "table-danger";
+                const name_class = response.name_is_correct ? "correct" : "wrong";
+                const version_class = response.game_version_is_correct ? "correct" : "wrong";
+                const health_class = response.health_is_correct ? "correct" : "wrong";
+                const height_class = response.height_is_correct ? "correct" : "wrong";
+                const behavior_class = response.behavior_is_correct ? "correct" : "wrong";
+                const spawn_class = response.spawn_is_correct ? "correct" : "wrong";
+                const classification_class = response.classification_is_correct ? "correct" : "wrong";
                 const row = document.createElement("tr");
                 row.innerHTML = `
                     <td class="${name_class}">${response.name}</td>

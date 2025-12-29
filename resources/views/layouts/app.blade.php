@@ -15,7 +15,7 @@
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
     <link href="https://db.onlinewebfonts.com/c/bf3f245b7cd53caea0cb07d265a64adc?family=Minecraftia+Regular" rel="stylesheet">
-
+    
     <!-- Style -->
     <link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/minecraftia" type="text/css"/>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
