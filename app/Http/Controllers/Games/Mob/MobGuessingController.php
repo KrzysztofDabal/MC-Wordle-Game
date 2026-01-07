@@ -52,33 +52,82 @@ class MobGuessingController extends Controller
         $daily = $this->get_daily_mob();
         $daily_mob = Mob::find($daily->mob_id);
 
-        
+        // NAME
+        $name_response = $guess->name === $daily_mob->name ? "correct" : "wrong";
+
+        // VERSION
+        // switch($guess->game_version <=> $daily_mob->game_version){
+        //     case -1:
+        //         $health_response = "wrong up"; break;
+        //     case 0:
+        //         $health_response = "correct"; break;
+        //     case 1:
+        //         $health_response = "wrong down"; break;
+        // }
+        $version_response = $guess->game_version === $daily_mob->game_version ? "correct" : "wrong";
+
+        // HEALTH
+        switch((int)$guess->health <=> (int)$daily_mob->health){
+            case -1:
+                $health_response = "wrong up"; break;
+            case 0:
+                $health_response = "correct"; break;
+            case 1:
+                $health_response = "wrong down"; break;
+        }
+
+        // HEIGHT
+        switch((float)$guess->height <=> (float)$daily_mob->height){
+            case -1:
+                $height_response = "wrong up"; break;
+            case 0:
+                $height_response = "correct"; break;
+            case 1:
+                $height_response = "wrong down"; break;
+        }
+
+        // BEHAVIOR
+        $behavior_response = $guess->behavior === $daily_mob->behavior ? "correct" : "wrong";
+
+        // SPAWN
         $guess_spawn = is_string($guess->spawn) ? json_decode($guess->spawn, true) : $guess->spawn;
         $daily_spawn = is_string($daily_mob->spawn) ? json_decode($daily_mob->spawn, true) : $daily_mob->spawn;
+        if($guess_spawn == $daily_spawn){
+            $spawn_response = "correct";
+        }
+        else if(count(array_intersect($guess_spawn, $daily_spawn)) > 0){
+                $spawn_response = "partial";
+        }  
+        else{
+            $spawn_response = "wrong";
+        }
+
+        // CLASSIFICATION
+        $classification_response = $guess->classification === $daily_mob->classification ? "correct" : "wrong";
 
         $result = [
             'name' => $guess->name,
-            'name_is_correct' => $guess->name === $daily_mob->name,
+            'name_is_correct' => $name_response,
 
             'graphic' => $guess->graphic,
             
             'game_version' => $guess->game_version,
-            'game_version_is_correct' => $guess->game_version === $daily_mob->game_version,
+            'game_version_is_correct' => $version_response,
 
             'health' => $guess->health,
-            'health_is_correct' => (int)$guess->health === (int)$daily_mob->health,
+            'health_is_correct' => $health_response,
 
             'height' => $guess->height,
-            'height_is_correct' => (float)$guess->height === (float)$daily_mob->height,
+            'height_is_correct' => $height_response,
 
             'behavior' => $guess->behavior,
-            'behavior_is_correct' => $guess->behavior === $daily_mob->behavior,
+            'behavior_is_correct' => $behavior_response,
 
             'spawn' => $guess->spawn,
-            'spawn_is_correct' => count(array_intersect($guess_spawn, $daily_spawn)) > 0,
+            'spawn_is_correct' => $spawn_response,
             
             'classification' => $guess->classification,
-            'classification_is_correct' => $guess->classification === $daily_mob->classification
+            'classification_is_correct' => $classification_response
         ];
 
         return response()->json($result);

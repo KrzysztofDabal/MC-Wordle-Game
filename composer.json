@@ -1,8 +1,8 @@
 {
-    "name": "laravel/laravel",
+    "name": "MCDle",
     "type": "project",
-    "description": "The Laravel Framework.",
-    "keywords": ["framework", "laravel"],
+    "description": "McDle Minecraft Wordle Game",
+    "keywords": ["framework", "laravel, game, wordle, minecraft, mcdle"],
     "license": "MIT",
     "require": {
         "php": "^8.0.2",

@@ -65,22 +65,22 @@
                 guess_to_compare: guess_name
             },
             success: function(response){
-                const name_class = response.name_is_correct ? "correct" : "wrong";
-                const version_class = response.game_version_is_correct ? "correct" : "wrong";
-                const health_class = response.health_is_correct ? "correct" : "wrong";
-                const height_class = response.height_is_correct ? "correct" : "wrong";
-                const behavior_class = response.behavior_is_correct ? "correct" : "wrong";
-                const spawn_class = response.spawn_is_correct ? "correct" : "wrong";
-                const classification_class = response.classification_is_correct ? "correct" : "wrong";
+                // const name_class = response.name_is_correct ? "correct" : "wrong";
+                // const version_class = response.game_version_is_correct ? "correct" : "wrong";
+                // const health_class = response.health_is_correct ? "correct" : "wrong";
+                // const height_class = response.height_is_correct ? "correct" : "wrong";
+                // const behavior_class = response.behavior_is_correct ? "correct" : "wrong";
+                // const spawn_class = response.spawn_is_correct ? "correct" : "wrong";
+                // const classification_class = response.classification_is_correct ? "correct" : "wrong";
                 const row = document.createElement("tr");
                 row.innerHTML = `
-                    <td class="${name_class}">${response.name}</td>
-                    <td class="${version_class}">${response.game_version}</td>
-                    <td class="${health_class}">${response.health}</td>
-                    <td class="${height_class}">${response.height}</td>
-                    <td class="${behavior_class}">${response.behavior}</td>
-                    <td class="${spawn_class}">${Array.isArray(response.spawn) ? response.spawn.join(', ') : JSON.parse(response.spawn).join(', ')}</td>
-                    <td class="${classification_class}">${response.classification}</td>
+                    <td class="${response.name_is_correct}">${response.name}</td>
+                    <td class="${response.game_version_is_correct}">${response.game_version}</td>
+                    <td class="${response.health_is_correct}">${response.health}</td>
+                    <td class="${response.height_is_correct}">${response.height}</td>
+                    <td class="${response.behavior_is_correct}">${response.behavior}</td>
+                    <td class="${response.spawn_is_correct}">${Array.isArray(response.spawn) ? response.spawn.join(', ') : JSON.parse(response.spawn).join(', ')}</td>
+                    <td class="${response.classification_is_correct}">${response.classification}</td>
                 `;
                 tbody.prepend(row);
             }

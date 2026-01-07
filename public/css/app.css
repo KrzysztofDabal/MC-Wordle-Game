@@ -127,3 +127,17 @@ img {
 .inventory td.wrong {
     background: #df5351 !important;
 }
+
+td.up::after,
+td.down::after {
+    font-size: 24px !important;
+    margin-left: 4px !important;
+}
+.inventory td.up::after {
+    content: " ↑";
+    /* color: #d50000; */
+}
+.inventory td.down::after {
+    content: " ↓";
+    /* color: #d50000; */
+}
