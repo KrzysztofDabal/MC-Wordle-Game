@@ -175,7 +175,7 @@
         <div class="col-md-8">
             <input type="text" id="mobSearch" placeholder="Wpisz nazwę moba..." class="guess_input">
 
-            <table class="inventory" id="guesses_tab">
+            <table class="inventory hidden" id="guesses_tab">
                 <thead class=""> 
                     <tr>
                         <th>Name</th>

@@ -1,3 +1,7 @@
+.hidden {
+    display: none;
+}
+
 .btn-xl {
     width: 224px;
     height: 80px;
