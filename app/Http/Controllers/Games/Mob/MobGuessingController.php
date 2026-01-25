@@ -12,10 +12,13 @@ class MobGuessingController extends Controller
 {
     public function index(Request $request){
         
+        $mobs = Mob::with('GameVersion')->first();
+        dd($mobs->GameVersion->version);
         $version = DailyMob::latest('id')->value('version');
         // $daily_mob = DailyMob::latest('id')->first();
         // $version = $daily_mob?->version;
         $mobs = Mob::select('id', 'name')->orderBy('name')->get();
+        dd($mobs);
         return view('games.mobs', compact('version', 'mobs'));
     }
 

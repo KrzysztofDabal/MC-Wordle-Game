@@ -14,11 +14,15 @@ class Mob extends Model
     protected $fillable = [
         'name',
         'graphic',
-        'game_version',
+        'game_version_id',
         'health',
         'height',
         'behavior',
         'spawn',
         'classification'
     ];
+    public function gameVersion()
+    {
+        return $this->belongsTo(GameVersion::class);
+    }
 }

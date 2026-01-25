@@ -13,15 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('daily_challenges_', function (Blueprint $table) {
+        Schema::create('game_versions', function (Blueprint $table) {
             $table->id();
-            $table->integer('version');
-            $table->integer('mob_id');
-            $table->string('mob_name');
-            $table->integer('block_id');
-            $table->string('block_name');
-            $table->integer('item_id');
-            $table->string('item_name');
+            $table->integer('release_order');
+            $table->string('version');
             $table->timestamps();
         });
     }
@@ -33,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('daily_challenges_');
+        //
     }
 };

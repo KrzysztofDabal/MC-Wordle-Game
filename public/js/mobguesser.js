@@ -4,24 +4,21 @@
     let mobStorage;
     $(document).ready(function (){
         mobStorage = localStorage.getItem('mobGuesses');
-        if(!mobStorage){
-        } else{
+        if(!mobStorage){}
+        else{
             mobGuesses = JSON.parse(mobStorage);
 
             if(mobGuesses[0].version != game_version){
                 localStorage.removeItem('mobGuesses');
                 mobStorage = null;
                 mobGuesses = null;
-            } else{
+            }
+            else{
                 (async () => {
                     const guessNames = mobGuesses[1].guesses.map(guess => guess.name);
                     const rows = await get_rows(guessNames);
                     render_table(rows);
                 })();
-                // mobGuesses[1].guesses.forEach(guess => {
-                //     rows = generate_table_row(guess.name) + rows;
-                // });
-                // document.querySelector('#guesses_tab tbody').innerHTML = rows;
             }
         }
 
@@ -38,45 +35,16 @@
                 event.preventDefault();
             }
         });
-        if(mobGuesses){
-            check_if_guessed(mobGuesses[2].is_guessed);
-        } else {
-            $('#mobSearch').prop('disabled', false).autocomplete("enable");
-        }
-    });
-
-    function check_if_guessed(is_guessed){
-        if(is_guessed){
+        
+        if(mobGuesses?.[2]?.is_guessed){
             $('#mobSearch').prop('disabled', true).autocomplete("disable");
-        } else {
+        }
+        else{
             $('#mobSearch').prop('disabled', false).autocomplete("enable");
         }
-        return;
-    }
 
-    // function guesses_table(guess_name){
-    //     const tbody = document.querySelector('#guesses_tab tbody');
-    //     $.ajax({
-    //         url: '/mobguesser/compare_to_daily',
-    //         method: 'POST',
-    //         data: {
-    //             guess_to_compare: guess_name
-    //         },
-    //         success: function(response){
-    //             const row = document.createElement("tr");
-    //             row.innerHTML = `
-    //                 <td class="${response.name_is_correct}">${response.name}</td>
-    //                 <td class="${response.game_version_is_correct}">${response.game_version}</td>
-    //                 <td class="${response.health_is_correct}">${response.health}</td>
-    //                 <td class="${response.height_is_correct}">${response.height}</td>
-    //                 <td class="${response.behavior_is_correct}">${response.behavior}</td>
-    //                 <td class="${response.spawn_is_correct}">${Array.isArray(response.spawn) ? response.spawn.join(', ') : JSON.parse(response.spawn).join(', ')}</td>
-    //                 <td class="${response.classification_is_correct}">${response.classification}</td>
-    //             `;
-    //             tbody.prepend(row);
-    //         }
-    //     });
-    // }
+
+    });
 
     async function get_rows(guess_names){
         const promises = guess_names.map(name =>
@@ -99,7 +67,6 @@
         const html = prepend ? [...rows].reverse().join('') : rows.join('');
 
         tbody.insertAdjacentHTML('afterbegin', html);
-        // tbody.innerHTML = html;
         document.querySelector('#guesses_tab').classList.remove('hidden');
     }
 
@@ -114,13 +81,13 @@
                 success: function(response){
                     resolve(`
                         <tr>
-                            <td class="${response.name_is_correct}">${response.name}</td>
-                            <td class="${response.game_version_is_correct}">${response.game_version}</td>
-                            <td class="${response.health_is_correct}">${response.health}</td>
-                            <td class="${response.height_is_correct}">${response.height}</td>
-                            <td class="${response.behavior_is_correct}">${response.behavior}</td>
-                            <td class="${response.spawn_is_correct}">${Array.isArray(response.spawn) ? response.spawn.join(', ') : JSON.parse(response.spawn).join(', ')}</td>
-                            <td class="${response.classification_is_correct}">${response.classification}</td>
+                            <td><div class="guess_table_cell ${response.name_is_correct}">${response.name}</div></td>
+                            <td><div class="guess_table_cell ${response.game_version_is_correct}">${response.game_version}</div></td>
+                            <td><div class="guess_table_cell ${response.health_is_correct}">${response.health}</div></td>
+                            <td><div class="guess_table_cell ${response.height_is_correct}">${response.height}</div></td>
+                            <td><div class="guess_table_cell ${response.behavior_is_correct}">${response.behavior}</div></td>
+                            <td><div class="guess_table_cell ${response.spawn_is_correct}">${Array.isArray(response.spawn) ? response.spawn.join(', ') : JSON.parse(response.spawn).join(', ')}</div></td>
+                            <td><div class="guess_table_cell ${response.classification_is_correct}">${response.classification}</div></td>
                         </tr>
                     `);
                 },
@@ -142,7 +109,8 @@
                 {is_guessed: guess.is_guess_corect}
             ]
             localStorage.setItem('mobGuesses', JSON.stringify(new_data));
-        } else{
+        }
+        else{
             mobGuesses = JSON.parse(mobStorage);
 
             let alreadyguessed = mobGuesses[1].guesses.some(g => g.name === guess.name);
@@ -150,15 +118,17 @@
                 mobGuesses[1].guesses.push({name: guess.name});
                 if(guess.is_guess_corect){
                     mobGuesses[2].is_guessed = guess.is_guess_corect;
+                    $('#mobSearch').prop('disabled', true).autocomplete("disable");
+                }
+                else{
+                    $('#mobSearch').prop('disabled', false).autocomplete("enable");
                 }
                 localStorage.setItem('mobGuesses', JSON.stringify(mobGuesses));
                 
-            } else {return;}
+            }
+            else {return;}
         }
         row_for_selected_guess(guess.name)
-        // let row = generate_table_row(guess.name);
-        // document.querySelector('#guesses_tab tbody').innerHTML = row;
-        check_if_guessed(guess.is_guess_corect);
         return;
     }
 

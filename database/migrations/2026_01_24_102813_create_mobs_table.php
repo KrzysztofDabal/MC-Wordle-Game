@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('graphic');
-            $table->string('game_version');
+            $table->foreignId('game_version_id')->constrained('game_versions')->cascadeOnDelete();
             $table->integer('health');
             $table->float('height');
             $table->string('behavior');

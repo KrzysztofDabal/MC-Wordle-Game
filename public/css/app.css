@@ -67,6 +67,7 @@ img {
     max-height: 180px !important;
     overflow-y: auto !important;
     /* font-family: 'Minecraftia', monospace !important; */
+    font-weight: bold !important;
     box-shadow: none !important;
     overflow-x: hidden !important;
 }
@@ -75,6 +76,7 @@ img {
     padding: 4px 10px !important;
     color: #d1d0d0;
     font-size: 18px;
+    font-weight: bold !important;
     white-space: nowrap !important;
     overflow-x: hidden !important;
 }
@@ -88,60 +90,81 @@ img {
 }
 
 
-.inventory {
-    width: 100%;
+.guess_table {
+    table-layout: fixed;
     border-collapse: separate;
     border-spacing: 6px;
     background: #555;
     padding: 10px;
     box-shadow: inset 0 0 0 4px #000;
-    font-family: 'Minecraftia', monospace;
+    font-family: 'Minecraftia', monospace !important;
     margin-top: 64px !important;
 }
 
-.inventory th {
+.guess_table th {
     color: #d1d0d0;
-    font-size: 18px;
+    font-size: 18px !important;
+    font-weight: bold !important;
     text-align: center;
 }
+.guess_table td {
+    padding: 0;
+}
 
-.inventory td {
-    width: 64px;
-    height: 64px;
+.table-responsive{
+    width: 50%;
+    align-items: center;
+    justify-content: center;
+    overflow-x: auto;
+}
+.guess_table_cell {
+    width: 100%;
+    
+    min-height: 64px;
     background: #c6c6c6;
     border: 3px solid #292929;
     box-shadow:
         inset 3px 3px 0 #8b8b8b,
         inset -3px -3px 0 #555;
-    text-align: center;
-    vertical-align: middle;
     color: #000;
     font-size: 14px;
+    font-weight: bold;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: relative;
+    text-align: center;
+    vertical-align: middle;
 }
 
 /* stany */
-.inventory td.correct {
+.guess_table_cell.correct {
     background: #5fbb62 !important;
 }
 
-.inventory td.partial {
+.guess_table_cell.partial {
     background: #e7bd51 !important;
 }
 
-.inventory td.wrong {
+.guess_table_cell.wrong {
     background: #df5351 !important;
 }
 
-td.up::after,
-td.down::after {
-    font-size: 24px !important;
-    margin-left: 4px !important;
+.guess_table_cell.wrong.up::before {
+    content: "▲";
+    position: absolute; 
+    left: 50%;
+    transform: translateX(-50%) scaleX(2);
+    bottom: 50%;
+    margin-bottom: 3px;
 }
-.inventory td.up::after {
-    content: " ↑";
-    /* color: #d50000; */
-}
-.inventory td.down::after {
-    content: " ↓";
-    /* color: #d50000; */
+.guess_table_cell.wrong.down::after {
+    content: "▼";
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%) scaleX(2);
+    top: 50%;
+    margin-top: 3px;
 }
