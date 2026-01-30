@@ -14,9 +14,13 @@ class DailyMobGenerate extends Command
     public function handle()
     {
         $previous_daily_mob = DailyMob::latest('id')->first();
-        do{
+        if(!$previous_daily_mob){
             $mob = Mob::inRandomOrder()->first();
-        }while($previous_daily_mob->id == $mob->id);
+        }else{
+            do{
+                $mob = Mob::inRandomOrder()->first();
+            }while($previous_daily_mob->id == $mob->id);
+        }
 
         DailyMob::create([
                 'version' => DailyMob::max('version') + 1,

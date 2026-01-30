@@ -113,13 +113,15 @@ img {
 
 .table-responsive{
     width: 50%;
+    display: flex;
     align-items: center;
     justify-content: center;
     overflow-x: auto;
 }
+
 .guess_table_cell {
     width: 100%;
-    
+    min-width: 64px;
     min-height: 64px;
     background: #c6c6c6;
     border: 3px solid #292929;
@@ -137,6 +139,7 @@ img {
     position: relative;
     text-align: center;
     vertical-align: middle;
+    padding: 8px;
 }
 
 /* stany */

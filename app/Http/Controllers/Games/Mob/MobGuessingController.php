@@ -12,13 +12,13 @@ class MobGuessingController extends Controller
 {
     public function index(Request $request){
         
-        $mobs = Mob::with('GameVersion')->first();
-        dd($mobs->GameVersion->version);
+        // $mobs = Mob::with('game_version')->first();
+        // dd($mobs->game_version->version);
         $version = DailyMob::latest('id')->value('version');
         // $daily_mob = DailyMob::latest('id')->first();
         // $version = $daily_mob?->version;
         $mobs = Mob::select('id', 'name')->orderBy('name')->get();
-        dd($mobs);
+        // dd($mobs);
         return view('games.mobs', compact('version', 'mobs'));
     }
 
@@ -51,23 +51,23 @@ class MobGuessingController extends Controller
             'guess_to_compare' => ['required', 'string', 'exists:mobs,name']
         ]);
 
-        $guess = Mob::where('name', '=', $validated_name)->firstOrFail();
+        $guess = Mob::with('game_version')->where('name', '=', $validated_name)->firstOrFail();
         $daily = $this->get_daily_mob();
-        $daily_mob = Mob::find($daily->mob_id);
+        $daily_mob = Mob::with('game_version')->find($daily->mob_id);
 
         // NAME
         $name_response = $guess->name === $daily_mob->name ? "correct" : "wrong";
 
         // VERSION
-        // switch($guess->game_version <=> $daily_mob->game_version){
-        //     case -1:
-        //         $health_response = "wrong up"; break;
-        //     case 0:
-        //         $health_response = "correct"; break;
-        //     case 1:
-        //         $health_response = "wrong down"; break;
-        // }
-        $version_response = $guess->game_version === $daily_mob->game_version ? "correct" : "wrong";
+        switch($guess->game_version->release_order <=> $daily_mob->game_version->release_order){
+            case -1:
+                $version_response = "wrong up"; break;
+            case 0:
+                $version_response = "correct"; break;
+            case 1:
+                $version_response = "wrong down"; break;
+        }
+        // $version_response = $guess->game_version === $daily_mob->game_version ? "correct" : "wrong";
 
         // HEALTH
         switch((int)$guess->health <=> (int)$daily_mob->health){
@@ -90,7 +90,17 @@ class MobGuessingController extends Controller
         }
 
         // BEHAVIOR
-        $behavior_response = $guess->behavior === $daily_mob->behavior ? "correct" : "wrong";
+        $guess_behavior = is_string($guess->behavior) ? json_decode($guess->behavior, true) : $guess->behavior;
+        $daily_behavior = is_string($daily_mob->behavior) ? json_decode($daily_mob->behavior, true) : $daily_mob->behavior;
+        if($guess_behavior == $daily_behavior){
+            $behavior_response = "correct";
+        }
+        else if(count(array_intersect($guess_behavior, $daily_behavior)) > 0){
+                $behavior_response = "partial";
+        }  
+        else{
+            $behavior_response = "wrong";
+        }
 
         // SPAWN
         $guess_spawn = is_string($guess->spawn) ? json_decode($guess->spawn, true) : $guess->spawn;
@@ -106,7 +116,17 @@ class MobGuessingController extends Controller
         }
 
         // CLASSIFICATION
-        $classification_response = $guess->classification === $daily_mob->classification ? "correct" : "wrong";
+        $guess_classification = is_string($guess->classification) ? json_decode($guess->classification, true) : $guess->classification;
+        $daily_classification = is_string($daily_mob->classification) ? json_decode($daily_mob->classification, true) : $daily_mob->classification;
+        if($guess_classification == $daily_classification){
+            $classification_response = "correct";
+        }
+        else if(count(array_intersect($guess_classification, $daily_classification)) > 0){
+                $classification_response = "partial";
+        }  
+        else{
+            $classification_response = "wrong";
+        }
 
         $result = [
             'name' => $guess->name,

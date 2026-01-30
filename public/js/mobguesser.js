@@ -82,12 +82,12 @@
                     resolve(`
                         <tr>
                             <td><div class="guess_table_cell ${response.name_is_correct}">${response.name}</div></td>
-                            <td><div class="guess_table_cell ${response.game_version_is_correct}">${response.game_version}</div></td>
+                            <td><div class="guess_table_cell ${response.game_version_is_correct}">${response.game_version.version}</div></td>
                             <td><div class="guess_table_cell ${response.health_is_correct}">${response.health}</div></td>
                             <td><div class="guess_table_cell ${response.height_is_correct}">${response.height}</div></td>
-                            <td><div class="guess_table_cell ${response.behavior_is_correct}">${response.behavior}</div></td>
+                            <td><div class="guess_table_cell ${response.behavior_is_correct}">${Array.isArray(response.behavior) ? response.behavior.join(', ') : JSON.parse(response.behavior).join(', ')}</div></td>
                             <td><div class="guess_table_cell ${response.spawn_is_correct}">${Array.isArray(response.spawn) ? response.spawn.join(', ') : JSON.parse(response.spawn).join(', ')}</div></td>
-                            <td><div class="guess_table_cell ${response.classification_is_correct}">${response.classification}</div></td>
+                            <td><div class="guess_table_cell ${response.classification_is_correct}">${Array.isArray(response.classification) ? response.classification.join(', ') : JSON.parse(response.classification).join(', ')}</div></td>
                         </tr>
                     `);
                 },
