@@ -115,7 +115,7 @@ class MobsSeeder extends Seeder
         // Alpha 1.2.0
         DB::table('mobs')->insert([
             'name' => 'Pigman',
-            'graphic' => 'https://minecraft.wiki/images/thumb/Enderman_JE3_BE1.png/1024px-Enderman_JE3_BE1.png?c6308',
+            'graphic' => 'https://minecraft.wiki/images/Zombified_Piglin_JE9.png?b91da',
             'game_version_id' => 5,
             'health' => 20,
             'height' => 1.95,
@@ -137,7 +137,7 @@ class MobsSeeder extends Seeder
         // Beta 1.2
         DB::table('mobs')->insert([
             'name' => 'Squid',
-            'graphic' => 'https://minecraft.wiki/images/Squid_JE2_BE2.gif?8a4c4',
+            'graphic' => 'https://minecraft.wiki/images/Squid_JE2_BE2.png?1c3f9',
             'game_version_id' => 6,
             'health' => 10,
             'height' => 0.8,
@@ -161,7 +161,7 @@ class MobsSeeder extends Seeder
         // Beta 1.8
         DB::table('mobs')->insert([
             'name' => 'Enderman',
-            'graphic' => 'https://minecraft.wiki/images/Zombified_Piglin_JE9.png?b91da',
+            'graphic' => 'https://minecraft.wiki/images/thumb/Enderman_JE3_BE1.png/1024px-Enderman_JE3_BE1.png?c6308',
             'game_version_id' => 8,
             'health' => 40,
             'height' => 2.9,

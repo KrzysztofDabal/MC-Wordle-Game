@@ -81,6 +81,7 @@
                 success: function(response){
                     resolve(`
                         <tr>
+                            <td><div class="guess_table_cell"><img src="${response.graphic}"/></div></td>
                             <td><div class="guess_table_cell ${response.name_is_correct}">${response.name}</div></td>
                             <td><div class="guess_table_cell ${response.game_version_is_correct}">${response.game_version.version}</div></td>
                             <td><div class="guess_table_cell ${response.health_is_correct}">${response.health}</div></td>

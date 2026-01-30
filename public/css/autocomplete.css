@@ -1,0 +1,54 @@
+
+.guess_input {
+    padding-left: 42px;
+    height: 40px;
+    width: auto;
+    min-width: 600px;
+    position: relative;
+    display: inline-block;
+    font-size: 16px;
+    font-family: "Minecraftia Regular", monospace;
+    border-bottom:2px solid #b9b9b9;
+  	outline: 2px solid #000;
+    background-color: #5e5e5e; /* minecraftowe tło */
+    color: #b9b9b9;
+    box-shadow: none;
+  	text-shadow: 3px 3px #4C4C4C;
+    box-sizing: border-box;
+    background-repeat: no-repeat;
+    background-position: 8px center; /* ikona po lewej */
+    background-size: 24px 24px;
+    background-image: url('/img/search_icon.png'); /* ścieżka do ikony */
+}
+
+.guess_input::placeholder {
+    color: #dadada;
+}
+.ui-autocomplete {
+    background: rgb(24, 24, 24) !important;
+    border: none !important;
+    padding: 6px 0 !important;
+    max-height: 180px !important;
+    overflow-y: auto !important;
+    /* font-family: 'Minecraftia', monospace !important; */
+    font-weight: bold !important;
+    box-shadow: none !important;
+    overflow-x: hidden !important;
+}
+
+.ui-menu-item-wrapper {
+    padding: 4px 10px !important;
+    color: #d1d0d0;
+    font-size: 18px;
+    font-weight: bold !important;
+    white-space: nowrap !important;
+    overflow-x: hidden !important;
+}
+
+/* hover / active */
+.ui-menu-item-wrapper:hover,
+.ui-state-active {
+    background: rgb(24, 24, 24) !important;
+    color: #aaffaa !important;
+    overflow-x: hidden !important;
+}
