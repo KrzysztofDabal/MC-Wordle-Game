@@ -33,7 +33,7 @@ Players can solve challenges independently for each category.
 
 
 
-## 🏗 🏗 Application architecture
+## 🏗 Application architecture
 
 The MCDle application was implemented as a hybrid MVC application, combining classic Laravel routing with asynchronous client-server communication.
 
@@ -71,5 +71,5 @@ The MCDle application was implemented as a hybrid MVC application, combining cla
 
 ## 📸 Screenshots
 
-![Game Select Page](public/img/screenshots/welcome_page.jpg)
+![Game Select Page](public/img/screenshots/welcome_page.png)
 ![Mob Guessing](public/img/screenshots/mob_guessing.jpg)
