@@ -20,16 +20,16 @@ Players can solve challenges independently for each category.
 
 ##  ✨ Features
 
--Wordle-style word guessing
--Separate daily challenge for each category
--Backend answer comparison
--Unlimited number of attempts
--Scoreboard:
-    -Number of attempts
-    -Completion status
--Database of words divided into categories
--Version system / patch notes
--simple, stylized layout inspired by Minecraft
+- **Wordle-style word guessing**
+- Separate daily challenge for each category
+- Backend answer comparison
+- Unlimited number of attempts
+- Scoreboard:
+    - Number of attempts
+    - Completion status
+- Database of words divided into categories
+- Version system / patch notes
+- simple, stylized layout inspired by Minecraft
 
 
 
