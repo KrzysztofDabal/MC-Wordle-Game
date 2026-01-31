@@ -1,4 +1,4 @@
-<p align="center"><a href="" target="_blank"><img src="/img/logo.png" width="400" alt="MCDle Logo"></a></p>
+<p align="center"><a href="" target="_blank"><img src="public/img/logo.png" width="400" alt="MCDle Logo"></a></p>
 
 <p align="center">
 <a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
