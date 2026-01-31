@@ -9,10 +9,10 @@ The player guesses game-related words divided into different categories, while t
 ### 🎮 Game categories
 
 Each category has its own challenge of the day:
--🐮 Moby
--🧱 Blocks
--🧰 Items
--🛠️ Crafting
+- 🐮 **Moby**
+- 🧱 **Blocks**
+- 🧰 **Items**
+- 🛠️ **Crafting**
 
 Players can solve challenges independently for each category.
 
@@ -21,50 +21,55 @@ Players can solve challenges independently for each category.
 ##  ✨ Features
 
 - **Wordle-style word guessing**
-- Separate daily challenge for each category
-- Backend answer comparison
-- Unlimited number of attempts
-- Scoreboard:
+- **Separate daily challenge for each category**
+- **Backend answer comparison**
+- **Unlimited number of attempts**
+- **Scoreboard:**
     - Number of attempts
     - Completion status
-- Database of words divided into categories
-- Version system / patch notes
-- simple, stylized layout inspired by Minecraft
+- **Database of words divided into categories**
+- **Version system / patch notes**
+- **Simple, stylized layout inspired by Minecraft**
 
 
 
-## Laravel Sponsors
+## 🏗 🏗 Application architecture
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+The MCDle application was implemented as a hybrid MVC application, combining classic Laravel routing with asynchronous client-server communication.
 
-### Premium Partners
+###Presentation layer (Frontend)
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+- **Rendered on the server side using Blade views**
+- **Classic navigation between subpages implemented by Laravel routing**
+- **Gameplay interactions handled asynchronously (AJAX)**
+- **Frontend sends queries to the backend and processes responses in JSON format**
+- **No game logic or correct responses on the client side**
+- **Answers stored in local storage**
 
-## Contributing
+### Application layer (Backend)
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+- **Application based on the Laravel framework (MVC architecture)**
+- **Controllers responsible for handling game logic and communication with the database**
+- **Separate endpoints returning JSON, used to handle game mechanics**
+- **Generating daily passwords independently for each category (mobs, blocks, items, crafting)**
+- **Input data validation**
+- **All comparison logic performed on the server side**
 
-## Code of Conduct
+### Communication
+**Frontend ↔ backend communicate using internal API endpoints**
+**Data is sent in JSON format**
+**Asynchronous communication eliminates page reloads during gameplay**
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## 🛠 Technologies
 
-## Security Vulnerabilities
+- **PHP 8.x**
+- **Laravel 9**
+- **MySQL**
+- **HTML / CSS**
+- **JavaScript**
+- **REST API (JSON)**
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## 📸 Screenshots
 
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+![Game Select Page](public/screenshots/welcome_page.jpg)
+![Mob Guessing](public/screenshots/mob_guessing.jpg)
