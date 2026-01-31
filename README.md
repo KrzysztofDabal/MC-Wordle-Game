@@ -37,7 +37,7 @@ Players can solve challenges independently for each category.
 
 The MCDle application was implemented as a hybrid MVC application, combining classic Laravel routing with asynchronous client-server communication.
 
-###Presentation layer (Frontend)
+### Presentation layer (Frontend)
 
 - **Rendered on the server side using Blade views**
 - **Classic navigation between subpages implemented by Laravel routing**
@@ -56,9 +56,9 @@ The MCDle application was implemented as a hybrid MVC application, combining cla
 - **All comparison logic performed on the server side**
 
 ### Communication
-**Frontend ↔ backend communicate using internal API endpoints**
-**Data is sent in JSON format**
-**Asynchronous communication eliminates page reloads during gameplay**
+- **Frontend ↔ backend communicate using internal API endpoints**
+- **Data is sent in JSON format**
+- **Asynchronous communication eliminates page reloads during gameplay**
 
 ## 🛠 Technologies
 
@@ -71,5 +71,5 @@ The MCDle application was implemented as a hybrid MVC application, combining cla
 
 ## 📸 Screenshots
 
-![Game Select Page](public/screenshots/welcome_page.jpg)
-![Mob Guessing](public/screenshots/mob_guessing.jpg)
+![Game Select Page](public/img/screenshots/welcome_page.jpg)
+![Mob Guessing](public/img/screenshots/mob_guessing.jpg)
