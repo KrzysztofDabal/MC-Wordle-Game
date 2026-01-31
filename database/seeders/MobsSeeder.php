@@ -181,7 +181,7 @@ class MobsSeeder extends Seeder
         ]);
         DB::table('mobs')->insert([
             'name' => 'Silverfish',
-            'graphic' => 'https://minecraft.wiki/images/Silverfish_JE1_BE1.gif?d40a7',
+            'graphic' => 'https://minecraft.wiki/images/Silverfish_JE1_BE1.png?d40a7',
             'game_version_id' => 8,
             'health' => 8,
             'height' => 0.3,

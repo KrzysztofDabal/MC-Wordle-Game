@@ -21,6 +21,7 @@ class Mob extends Model
         'spawn',
         'classification'
     ];
+    
     public function game_version()
     {
         return $this->belongsTo(GameVersion::class);

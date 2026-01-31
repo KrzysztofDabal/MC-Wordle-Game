@@ -5,19 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class GameVersion extends Model
+class PatchNote extends Model
 {
     use HasFactory;
 
-    protected $table = 'game_versions';
+    protected $table = 'patch_notes';
 
     protected $fillable = [
-        'release_order',
         'version',
+        'description'
     ];
-    
-    public function mobs()
-    {
-        return $this->hasMany(Mob::class);
-    }
 }
