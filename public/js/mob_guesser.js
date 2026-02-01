@@ -135,7 +135,7 @@
 
     function check_mob(mobId){
         $.ajax({
-            url: '/mob-Guesser/check-guess',
+            url: '/mob-guesser/check-guess',
             method: 'POST',
             data: {
                 mob_id: mobId,

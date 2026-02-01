@@ -31,9 +31,9 @@
 }
 
 .guess_table_cell {
-    min-width: 64px;
-    min-height: 64px;
-    background: #c6c6c6;
+    min-width: 96px;
+    height: 96px;
+    background: #2b2b2b;
     border: 3px solid #292929;
     box-shadow:
         inset 3px 3px 0 #8b8b8b,
@@ -52,10 +52,8 @@
     padding: 8px;
 }
 .guess_table_cell img {
-    max-width: 64px;
-    max-height: 64px;
-    width: 100%;
-    height: auto;
+    max-width: 90px;
+    max-height: 90px;
     object-fit: contain; 
     -webkit-filter: drop-shadow(5px 5px 5px #222);
     filter: drop-shadow(5px 5px 5px #222);

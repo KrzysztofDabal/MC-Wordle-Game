@@ -17,6 +17,8 @@ class DatabaseSeeder extends Seeder
        $this->call([
         GameVersionSeeder::class,
         MobsSeeder::class,
+        MobsSeeder2::class,
+        // MobsSeeder3::class,
         DailyMobSeeder::class
        ]);
     }

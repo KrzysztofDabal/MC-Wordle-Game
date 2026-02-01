@@ -29,6 +29,10 @@ Route::prefix('/mob-guesser')->group(function(){
     Route::get('/get-mobs', [MobGuessingController::class, 'getMobs'])->name('mobGuesser.ge_mobs');
 });
 
-// Route::get('/block-guesser', [BlockGuessingController::class, 'index'])->name('block_guesser');
+// Route::prefix('/block-guesser')->group(function(){
+//     Route::get('', [BlockGuessingController::class, 'index'])->name('block_guesser');
+// });
 
-// Route::get('/item-guesser', [ItemGuessingController::class, 'index'])->name('item_guesser');
+// Route::prefix('/item-guesser')->group(function(){
+//     Route::get('', [ItemGuessingController::class, 'index'])->name('item_guesser');
+// });

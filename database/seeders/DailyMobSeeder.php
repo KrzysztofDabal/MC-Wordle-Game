@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Mob;
+use App\Models\DailyMob;
 use Illuminate\Support\Facades\DB;
 
 class DailyMobSeeder extends Seeder
@@ -18,7 +19,7 @@ class DailyMobSeeder extends Seeder
     {
         $mob = Mob::find(2);
         if($mob){
-            DB::table('daily_mob')->insert([
+            DailyMob::create([
                 'version' => 1,
                 'mob_id' => $mob->id,
                 'mob_name' => $mob->name,

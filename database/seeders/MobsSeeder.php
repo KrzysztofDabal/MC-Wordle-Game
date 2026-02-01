@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
+use App\Models\Mob;
 
 class MobsSeeder extends Seeder
 {
@@ -15,8 +15,18 @@ class MobsSeeder extends Seeder
      */
     public function run()
     {
-        // Pre Alpha
-        DB::table('mobs')->insert([
+        // Beta
+        Mob::create([
+            'name' => 'Silverfish',
+            'graphic' => 'https://minecraft.wiki/images/Silverfish_JE1_BE1.png?d40a7',
+            'game_version_id' => 8,
+            'health' => 8,
+            'height' => 0.3,
+            'behavior' => json_encode(['Hostile']),
+            'spawn' => json_encode(['Block', 'Spawner', 'Magic']),
+            'classification' => json_encode(['Arthropod'])
+        ]);
+        Mob::create([
             'name' => 'Zombie',
             'graphic' => 'https://minecraft.wiki/images/Zombie_JE3_BE2.png?228b5',
             'game_version_id' => 1,
@@ -26,7 +36,7 @@ class MobsSeeder extends Seeder
             'spawn' => json_encode(['Light Level', 'Spawner']),
             'classification' => json_encode(['Undead'])
         ]);
-        DB::table('mobs')->insert([
+        Mob::create([
             'name' => 'Creeper',
             'graphic' => 'https://minecraft.wiki/images/Creeper_JE3_BE1.png?dc7b2',
             'game_version_id' => 1,
@@ -36,7 +46,7 @@ class MobsSeeder extends Seeder
             'spawn' => json_encode(['Light Level']),
             'classification' => json_encode(['None'])
         ]);
-        DB::table('mobs')->insert([
+        Mob::create([
             'name' => 'Spider',
             'graphic' => 'https://minecraft.wiki/images/thumb/Spider_JE5_BE4.png/1280px-Spider_JE5_BE4.png?b090e',
             'game_version_id' => 1,
@@ -46,7 +56,7 @@ class MobsSeeder extends Seeder
             'spawn' => json_encode(['Light Level', 'Spawner', 'Jockey']),
             'classification' => json_encode(['Arthropod'])
         ]);
-        DB::table('mobs')->insert([
+        Mob::create([
             'name' => 'Skeleton',
             'graphic' => 'https://minecraft.wiki/images/Skeleton_JE6_BE4.png?85786',
             'game_version_id' => 1,
@@ -56,7 +66,7 @@ class MobsSeeder extends Seeder
             'spawn' => json_encode(['Light Level', 'Spawner', 'Structure', 'Lightning']),
             'classification' => json_encode(['Undead'])
         ]);
-        DB::table('mobs')->insert([
+        Mob::create([
             'name' => 'Pig',
             'graphic' => 'https://minecraft.wiki/images/Temperate_Pig_JE4_BE2.png?26a31',
             'game_version_id' => 1,
@@ -66,7 +76,7 @@ class MobsSeeder extends Seeder
             'spawn' => json_encode(['Grass', 'Breeding', 'Structure']),
             'classification' => json_encode(['Animal'])
         ]);
-        DB::table('mobs')->insert([
+        Mob::create([
             'name' => 'Sheep',
             'graphic' => 'https://minecraft.wiki/images/White_Sheep_JE4_BE7.png?5062a',
             'game_version_id' => 1,
@@ -78,7 +88,7 @@ class MobsSeeder extends Seeder
         ]);
 
         // Alpha 1.0.8
-        DB::table('mobs')->insert([
+        Mob::create([
             'name' => 'Cow',
             'graphic' => 'https://minecraft.wiki/images/Cow_JE7_BE4.png?a8c84',
             'game_version_id' => 2,
@@ -90,7 +100,7 @@ class MobsSeeder extends Seeder
         ]);
 
         // Alpha 1.0.11
-        DB::table('mobs')->insert([
+        Mob::create([
             'name' => 'Slime',
             'graphic' => 'https://minecraft.wiki/images/Slime_JE3_BE2.png?5b6a7',
             'game_version_id' => 3,
@@ -102,7 +112,7 @@ class MobsSeeder extends Seeder
         ]);
 
         // Alpha 1.0.14
-        DB::table('mobs')->insert([
+        Mob::create([
             'name' => 'Chicken',
             'graphic' => 'https://minecraft.wiki/images/Chicken_JE2_BE2.png?30245',
             'game_version_id' => 4,
@@ -113,7 +123,7 @@ class MobsSeeder extends Seeder
             'classification' => json_encode(['Animal'])
         ]);
         // Alpha 1.2.0
-        DB::table('mobs')->insert([
+        Mob::create([
             'name' => 'Pigman',
             'graphic' => 'https://minecraft.wiki/images/Zombified_Piglin_JE9.png?b91da',
             'game_version_id' => 5,
@@ -123,7 +133,7 @@ class MobsSeeder extends Seeder
             'spawn' => json_encode(['Biome', 'Structure', 'Conversion', 'Lightning']),
             'classification' => json_encode(['Undead'])
         ]);
-        DB::table('mobs')->insert([
+        Mob::create([
             'name' => 'Ghast',
             'graphic' => 'https://minecraft.wiki/images/Ghast_shooting_JE3.png?48502',
             'game_version_id' => 5,
@@ -135,7 +145,7 @@ class MobsSeeder extends Seeder
         ]);
 
         // Beta 1.2
-        DB::table('mobs')->insert([
+        Mob::create([
             'name' => 'Squid',
             'graphic' => 'https://minecraft.wiki/images/Squid_JE2_BE2.png?1c3f9',
             'game_version_id' => 6,
@@ -147,7 +157,7 @@ class MobsSeeder extends Seeder
         ]);
 
         // Beta 1.4
-        DB::table('mobs')->insert([
+        Mob::create([
             'name' => 'Wolf',
             'graphic' => 'https://minecraft.wiki/images/Wolf_JE2_BE2.png?ee46e',
             'game_version_id' => 7,
@@ -159,7 +169,7 @@ class MobsSeeder extends Seeder
         ]);
 
         // Beta 1.8
-        DB::table('mobs')->insert([
+        Mob::create([
             'name' => 'Enderman',
             'graphic' => 'https://minecraft.wiki/images/thumb/Enderman_JE3_BE1.png/1024px-Enderman_JE3_BE1.png?c6308',
             'game_version_id' => 8,
@@ -169,7 +179,7 @@ class MobsSeeder extends Seeder
             'spawn' => json_encode(['Light Level', 'Biome']),
             'classification' => json_encode(['None'])
         ]);
-        DB::table('mobs')->insert([
+        Mob::create([
             'name' => 'Cave Spider',
             'graphic' => 'https://minecraft.wiki/images/Cave_Spider_JE3_BE3.png?86c1d',
             'game_version_id' => 8,
@@ -179,7 +189,7 @@ class MobsSeeder extends Seeder
             'spawn' => json_encode(['Spawner']),
             'classification' => json_encode(['Arthropod'])
         ]);
-        DB::table('mobs')->insert([
+        Mob::create([
             'name' => 'Silverfish',
             'graphic' => 'https://minecraft.wiki/images/Silverfish_JE1_BE1.png?d40a7',
             'game_version_id' => 8,
