@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Games\Mob\MobGuessingController;
 use App\Http\Controllers\Games\Block\BlockGuessingController;
 use App\Http\Controllers\Games\Item\ItemGuessingController;
+use App\Http\Controllers\PageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,13 +17,10 @@ use App\Http\Controllers\Games\Item\ItemGuessingController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [PageController::class, 'index']);
 
 // Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::prefix('/mob-guesser')->group(function(){
     Route::get('', [MobGuessingController::class, 'index'])->name('mob_guesser');
