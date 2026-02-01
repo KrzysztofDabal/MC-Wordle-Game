@@ -107,7 +107,7 @@
                 {guesses: [
                     {name: guess.name}
                 ]},
-                {is_guessed: guess.is_guess_corect}
+                {is_guessed: guess.is_guess_correct}
             ]
             localStorage.setItem('mobGuesses', JSON.stringify(new_data));
         }
@@ -117,8 +117,8 @@
             let alreadyguessed = mobGuesses[1].guesses.some(g => g.name === guess.name);
             if(!alreadyguessed){
                 mobGuesses[1].guesses.push({name: guess.name});
-                if(guess.is_guess_corect){
-                    mobGuesses[2].is_guessed = guess.is_guess_corect;
+                if(guess.is_guess_correct){
+                    mobGuesses[2].is_guessed = guess.is_guess_correct;
                     $('#mobSearch').prop('disabled', true).autocomplete("disable");
                 }
                 else{
