@@ -8,22 +8,22 @@ use Illuminate\Http\Request;
 
 class MobController extends Controller
 {
-    public function get_mobs(){
+    public function getMobs(){
         $mobs = Mob::all();
         return $mobs;
     }
 
-    public function add_mob(){
+    public function addMob(){
         $mobs = Mob::all();
         return $mobs;
     }
 
-    public function store_mob(){
+    public function storeMob(){
         $mobs = Mob::all();
         return $mobs;
     }
 
-    public function update_mob(){
+    public function updateMob(){
         $mobs = Mob::all();
         return $mobs;
     }

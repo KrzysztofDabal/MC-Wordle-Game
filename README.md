@@ -71,5 +71,7 @@ The MCDle application was implemented as a hybrid MVC application, combining cla
 
 ## 📸 Screenshots
 
+ **Game Select Page**
 ![Game Select Page](public/img/screenshots/welcome_page.png)
+**Mob Guessing**
 ![Mob Guessing](public/img/screenshots/mob_guessing.jpg)
