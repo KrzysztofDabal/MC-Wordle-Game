@@ -63,15 +63,18 @@
 
 /* STATUS */
 .guess_table_cell.correct {
-    background: #5fbb62 !important;
+    background: #409143 !important;
+    /* background: #5fbb62 !important; */
 }
 
 .guess_table_cell.partial {
-    background: #e7bd51 !important;
+    background: #c09b3d !important;
+    /* background: #e7bd51 !important; */
 }
 
 .guess_table_cell.wrong {
-    background: #df5351 !important;
+    background: #af3634 !important;
+    /* background: #df5351 !important; */
 }
 
 .guess_table_cell.wrong.up::before {

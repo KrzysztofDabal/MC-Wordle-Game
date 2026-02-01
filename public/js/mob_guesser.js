@@ -73,7 +73,7 @@
     function generate_table_row(guess_name){
         return new Promise((resolve, reject) => {
             $.ajax({
-                url: '/mobguesser/compare_to_daily',
+                url: '/mob-guesser/compare-to-daily',
                 method: 'POST',
                 data: {
                     guess_to_compare: guess_name
@@ -81,7 +81,7 @@
                 success: function(response){
                     resolve(`
                         <tr>
-                            <td><div class="guess_table_cell"><img src="${response.graphic}"/></div></td>
+                            <td><div class="guess_table_cell ${response.graphic_is_correct}"><img src="${response.graphic}"/></div></td>
                             <td><div class="guess_table_cell ${response.name_is_correct}">${response.name}</div></td>
                             <td><div class="guess_table_cell ${response.game_version_is_correct}">${response.game_version.version}</div></td>
                             <td><div class="guess_table_cell ${response.health_is_correct}">${response.health}</div></td>
@@ -135,7 +135,7 @@
 
     function check_mob(mobId){
         $.ajax({
-            url: '/mobguesser/check_guess',
+            url: '/mob-Guesser/check-guess',
             method: 'POST',
             data: {
                 mob_id: mobId,

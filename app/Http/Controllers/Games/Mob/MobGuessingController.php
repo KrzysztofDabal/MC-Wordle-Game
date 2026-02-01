@@ -47,23 +47,37 @@ class MobGuessingController extends Controller
             'guess_to_compare' => ['required', 'string', 'exists:mobs,name']
         ]);
 
-        $guess = Mob::with('game_version')->where('name', '=', $validated['guess_to_compare'])->firstOrFail();
+        $guess = Mob::with('game_version')->where('name', $validated['guess_to_compare'])->firstOrFail();
         $daily = $this->mobService->getDailyMob();
-        $daily_mob = Mob::with('game_version')->find($daily->mob_id);
+        $daily_mob = Mob::with('game_version')->findOrFail($daily->mob_id);
 
-        $name_response = $guess->name === $daily_mob->name ? "correct" : "wrong";
-        $version_response = $this->comparisonService->compareGuessValue($guess->game_version->release_order, $daily_mob->game_version->release_order);
-        $health_response = $this->comparisonService->compareGuessValue((int)$guess->health, (int)$daily_mob->health);
-        $height_response = $this->comparisonService->compareGuessValue((float)$guess->height, (float)$daily_mob->height);
+        $name_response = $this->comparisonService->compareGuessValue($guess->name, $daily_mob->name);
+        $graphic_response = $this->comparisonService->isNameCorrect($guess->name, $daily_mob->name);
+        $version_response = $this->comparisonService->compareGuessUpDownValue($guess->game_version->release_order, $daily_mob->game_version->release_order);
+        $health_response = $this->comparisonService->compareGuessUpDownValue((int)$guess->health, (int)$daily_mob->health);
+        $height_response = $this->comparisonService->compareGuessUpDownValue((float)$guess->height, (float)$daily_mob->height);
         $behavior_response = $this->comparisonService->compareGuessJsonValue($guess->behavior, $daily_mob->behavior);
         $spawn_response = $this->comparisonService->compareGuessJsonValue($guess->spawn, $daily_mob->spawn);
         $classification_response = $this->comparisonService->compareGuessJsonValue($guess->classification, $daily_mob->classification);
+
+        // $fields = [
+        //     'name'           => ['method' => 'compareGuessValue', 'value_field' => 'name'],
+        //     'graphic'        => ['method' => null, 'value_field' => 'graphic'],
+        //     'game_version'   => ['method' => 'compareGuessUpDownValue', 'value_field' => 'game_version->release_order'],
+        //     'health'         => ['method' => 'compareGuessUpDownValue', 'value_field' => 'health'],
+        //     'height'         => ['method' => 'compareGuessUpDownValue', 'value_field' => 'height'],
+        //     'behavior'       => ['method' => 'compareGuessJsonValue', 'value_field' => 'behavior'],
+        //     'spawn'          => ['method' => 'compareGuessJsonValue', 'value_field' => 'spawn'],
+        //     'classification' => ['method' => 'compareGuessJsonValue', 'value_field' => 'classification'],
+        // ];
+        // $this->comparisonService->responseGenerator($fields, $guess, $daily_mob);
 
         $result = [
             'name' => $guess->name,
             'name_is_correct' => $name_response,
 
             'graphic' => $guess->graphic,
+            'graphic_is_correct' => $graphic_response,
             
             'game_version' => $guess->game_version,
             'game_version_is_correct' => $version_response,

@@ -24,13 +24,13 @@ Route::get('/', function () {
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::prefix('/mobguesser')->group(function(){
-    Route::get('', [MobGuessingController::class, 'index'])->name('mobguesser');
-    Route::post('/check_guess', [MobGuessingController::class, 'checkGuess'])->name('mobguesser.check_guess');
-    Route::post('/compare_to_daily', [MobGuessingController::class, 'compareToDaily'])->name('mobguesser.compare_to_daily');
-    Route::get('/get_mobs', [MobGuessingController::class, 'getMobs'])->name('mobguesser.ge_mobs');
+Route::prefix('/mob-guesser')->group(function(){
+    Route::get('', [MobGuessingController::class, 'index'])->name('mob_guesser');
+    Route::post('/check-guess', [MobGuessingController::class, 'checkGuess'])->name('mob_guesser.check_guess');
+    Route::post('/compare-to-daily', [MobGuessingController::class, 'compareToDaily'])->name('mobGuesser.compare_to_daily');
+    Route::get('/get-mobs', [MobGuessingController::class, 'getMobs'])->name('mobGuesser.ge_mobs');
 });
 
-Route::get('/blockguesser', [BlockGuessingController::class, 'index'])->name('blockguesser');
+// Route::get('/block-guesser', [BlockGuessingController::class, 'index'])->name('block_guesser');
 
-Route::get('/itemguesser', [ItemGuessingController::class, 'index'])->name('itemguesser');
+// Route::get('/item-guesser', [ItemGuessingController::class, 'index'])->name('item_guesser');

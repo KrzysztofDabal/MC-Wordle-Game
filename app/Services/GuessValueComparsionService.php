@@ -5,6 +5,13 @@ namespace App\Services;
 class GuessValueComparsionService
 {
     public function compareGuessValue($guess, $daily){
+        return $guess === $daily ? "correct" : "wrong";
+    }
+    public function isNameCorrect($guess, $daily){
+        return $guess === $daily ? "correct" : "";
+    }
+
+    public function compareGuessUpDownValue($guess, $daily){
         switch($guess <=> $daily){
             case -1:
                 return "wrong up"; break;
@@ -28,4 +35,8 @@ class GuessValueComparsionService
             return "wrong";
         }
     }
+
+    // public function responseGenerator(array $fields, object $guess, object $daily)
+    // {
+    // }
 }

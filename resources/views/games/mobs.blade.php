@@ -5,7 +5,7 @@
     const mobsList = @js($mobs);
     const game_version = @js($version);
 </script>
-<script src="{{ asset('js/mobguesser.js') }}"></script>
+<script src="{{ asset('js/mob_guesser.js') }}"></script>
 
 <div class="container">
     <div class="row justify-content-center">
