@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Games\Mob\MobGuessingController;
 use App\Http\Controllers\Games\Block\BlockGuessingController;
 use App\Http\Controllers\Games\Item\ItemGuessingController;
-use App\Http\Controllers\PageController;
+use App\Http\Controllers\Pages\PageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,6 +18,7 @@ use App\Http\Controllers\PageController;
 */
 
 Route::get('/', [PageController::class, 'index']);
+Route::get('/about', [PageController::class, 'aboutPage'])->name('about');
 
 // Auth::routes();
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
