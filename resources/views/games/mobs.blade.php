@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('next-game', 'blocks')
+
 @section('content')
 <script>
     const mobsList = @js($mobs);
@@ -14,6 +16,7 @@
                 <div class="guess_content">
                     <input type="text" id="mobSearch" placeholder="Input mob name..." class="guess_input">
 
+                    @include('games.partials.results')
                     <div class="table-responsive">
                         <table class="guess_table hidden" id="guesses_tab">
                             <thead> 
