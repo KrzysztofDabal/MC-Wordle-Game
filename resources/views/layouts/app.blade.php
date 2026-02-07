@@ -23,6 +23,7 @@
     <link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/minecraftia" type="text/css"/>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/autocomplete.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/result.css') }}">
     <link rel="stylesheet" href="{{ asset('css/table.css') }}">
 
     <!-- Scripts -->

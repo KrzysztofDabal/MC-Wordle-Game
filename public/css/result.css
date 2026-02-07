@@ -1,0 +1,33 @@
+.result_table{
+    width: auto;
+    min-width: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow-x: auto;
+}
+
+.result_table td {
+    padding: 0;
+}
+
+.result_table_cell {
+    width: 20px;
+    height: 20px;
+    background: #2b2b2b;
+    border: 3px solid #292929;
+    padding: 8px;
+}
+
+/* STATUS */
+.result_table_cell.correct {
+    background: #409143 !important;
+}
+
+.result_table_cell.partial {
+    background: #c09b3d !important;
+}
+
+.result_table_cell.wrong {
+    background: #af3634 !important;
+}

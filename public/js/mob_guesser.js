@@ -38,12 +38,11 @@
         
         if(mobGuesses?.[2]?.is_guessed){
             $('#mobSearch').prop('disabled', true).autocomplete("disable");
+            renderResultTable();
         }
         else{
             $('#mobSearch').prop('disabled', false).autocomplete("enable");
         }
-
-
     });
 
     async function get_rows(guess_names){
@@ -120,6 +119,7 @@
                 if(guess.is_guess_correct){
                     mobGuesses[2].is_guessed = guess.is_guess_correct;
                     $('#mobSearch').prop('disabled', true).autocomplete("disable");
+                    renderResultTable();
                 }
                 else{
                     $('#mobSearch').prop('disabled', false).autocomplete("enable");
