@@ -23,3 +23,9 @@
     font-style:normal;
     font-display:swap;
 }
+
+@font-face {
+    font-family: "MinecraftCopyright";
+    src: url("/fonts/MinecraftCopyright.otf") format("opentype");
+    unicode-range: U+00A9;
+}

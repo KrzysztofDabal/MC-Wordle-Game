@@ -54,5 +54,12 @@
             @yield('content')
         </main>
     </div>
+    <footer>
+        <div>
+            <p><span class="copyright">&copy;</span>MCDle.com - 2026</p>
+            <p><a href="">About</a></p>
+            <p><a href="">Changelogs</a></p>
+        </div>
+    </footer>
 </body>
 </html>

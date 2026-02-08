@@ -27,6 +27,25 @@ body {
     background-repeat: no-repeat !important;
     background-attachment: fixed !important;
 }
+footer {
+    color: white !important;
+    text-align: center !important;
+    margin: 0 0 0.25rem;
+}
+footer a {
+    color: inherit !important;
+    text-decoration: none !important;
+}
+footer p {
+    font-size: 1rem !important;
+    font-family: "Minecraftia Regular" !important;
+    margin: 0.25rem 0;
+}
+footer .copyright {
+    font-size: 1.25rem !important;
+    font-family: 'MinecraftCopyright' !important;
+    margin-right: 4px;
+}
 
 .minecraft-btn-big {
     min-width: 400px;
