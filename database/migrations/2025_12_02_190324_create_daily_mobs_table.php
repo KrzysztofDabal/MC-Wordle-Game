@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('daily_mob', function (Blueprint $table) {
+        Schema::create('daily_mobs', function (Blueprint $table) {
             $table->id();
             $table->integer('version');
             $table->integer('mob_id');
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('daily_mob');
+        Schema::dropIfExists('daily_mobs');
     }
 };

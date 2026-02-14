@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Http\Controllers\Games\Mob;
+namespace App\Http\Controllers\Games;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use App\Models\Mob;
-use App\Services\GuessValueComparsionService;
+use App\Services\GuessValueComparisonService;
 use App\Services\MobService;
 
 class MobGuessingController extends Controller
 {
-    public function __construct(private MobService $mobService, private GuessValueComparsionService $comparisonService) {}
+    public function __construct(private MobService $mobService, private GuessValueComparisonService $comparisonService) {}
 
     public function index(Request $request)
     {
@@ -59,18 +59,6 @@ class MobGuessingController extends Controller
         $behavior_response = $this->comparisonService->compareGuessJsonValue($guess->behavior, $daily_mob->behavior);
         $spawn_response = $this->comparisonService->compareGuessJsonValue($guess->spawn, $daily_mob->spawn);
         $classification_response = $this->comparisonService->compareGuessJsonValue($guess->classification, $daily_mob->classification);
-
-        // $fields = [
-        //     'name'           => ['method' => 'compareGuessValue', 'value_field' => 'name'],
-        //     'graphic'        => ['method' => null, 'value_field' => 'graphic'],
-        //     'game_version'   => ['method' => 'compareGuessUpDownValue', 'value_field' => 'game_version->release_order'],
-        //     'health'         => ['method' => 'compareGuessUpDownValue', 'value_field' => 'health'],
-        //     'height'         => ['method' => 'compareGuessUpDownValue', 'value_field' => 'height'],
-        //     'behavior'       => ['method' => 'compareGuessJsonValue', 'value_field' => 'behavior'],
-        //     'spawn'          => ['method' => 'compareGuessJsonValue', 'value_field' => 'spawn'],
-        //     'classification' => ['method' => 'compareGuessJsonValue', 'value_field' => 'classification'],
-        // ];
-        // $this->comparisonService->responseGenerator($fields, $guess, $daily_mob);
 
         $result = [
             'name' => $guess->name,

@@ -19,7 +19,8 @@ class DatabaseSeeder extends Seeder
         MobsSeeder::class,
         MobsSeeder2::class,
         // MobsSeeder3::class,
-        DailyMobSeeder::class
+        DailyMobSeeder::class,
+        AdminSeeder::class
        ]);
     }
 }

@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-class GuessValueComparsionService
+class GuessValueComparisonService
 {
     public function compareGuessValue($guess, $daily){
         return $guess === $daily ? "correct" : "wrong";
