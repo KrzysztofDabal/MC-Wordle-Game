@@ -23,7 +23,6 @@ Route::get('/', [PageController::class, 'index']);
 Route::get('/about', [PageController::class, 'aboutPage'])->name('about');
 
 Auth::routes();
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::prefix('/mob-guesser')->group(function(){
     Route::get('', [MobGuessingController::class, 'index'])->name('mob_guesser');
