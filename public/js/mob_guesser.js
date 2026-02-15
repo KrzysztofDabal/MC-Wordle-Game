@@ -61,12 +61,12 @@
     }
 
     async function render_table(rows, {prepend = true, replace} = {}){
-        const tbody = document.querySelector('#guesses_tab tbody');
+        const tbody = document.querySelector('#guesses-tab tbody');
 
         const html = prepend ? [...rows].reverse().join('') : rows.join('');
 
         tbody.insertAdjacentHTML('afterbegin', html);
-        document.querySelector('#guesses_tab').classList.remove('hidden');
+        document.querySelector('#guesses-table-layout').classList.remove('hidden');
     }
 
     function generate_table_row(guess_name){
@@ -80,14 +80,14 @@
                 success: function(response){
                     resolve(`
                         <tr>
-                            <td><div class="guess_table_cell ${response.graphic_is_correct}"><img src="${response.graphic}"/></div></td>
-                            <td><div class="guess_table_cell ${response.name_is_correct}">${response.name}</div></td>
-                            <td><div class="guess_table_cell ${response.game_version_is_correct}">${response.game_version.version}</div></td>
-                            <td><div class="guess_table_cell ${response.health_is_correct}">${response.health}</div></td>
-                            <td><div class="guess_table_cell ${response.height_is_correct}">${response.height}</div></td>
-                            <td><div class="guess_table_cell ${response.behavior_is_correct}">${Array.isArray(response.behavior) ? response.behavior.join(', ') : JSON.parse(response.behavior).join(', ')}</div></td>
-                            <td><div class="guess_table_cell ${response.spawn_is_correct}">${Array.isArray(response.spawn) ? response.spawn.join(', ') : JSON.parse(response.spawn).join(', ')}</div></td>
-                            <td><div class="guess_table_cell ${response.classification_is_correct}">${Array.isArray(response.classification) ? response.classification.join(', ') : JSON.parse(response.classification).join(', ')}</div></td>
+                            <td><div class="guess-table-cell ${response.graphic_is_correct}"><img src="${response.graphic}"/></div></td>
+                            <td><div class="guess-table-cell ${response.name_is_correct}">${response.name}</div></td>
+                            <td><div class="guess-table-cell ${response.game_version_is_correct}">${response.game_version.version}</div></td>
+                            <td><div class="guess-table-cell ${response.health_is_correct}">${response.health}</div></td>
+                            <td><div class="guess-table-cell ${response.height_is_correct}">${response.height}</div></td>
+                            <td><div class="guess-table-cell ${response.behavior_is_correct}">${Array.isArray(response.behavior) ? response.behavior.join(', ') : JSON.parse(response.behavior).join(', ')}</div></td>
+                            <td><div class="guess-table-cell ${response.spawn_is_correct}">${Array.isArray(response.spawn) ? response.spawn.join(', ') : JSON.parse(response.spawn).join(', ')}</div></td>
+                            <td><div class="guess-table-cell ${response.classification_is_correct}">${Array.isArray(response.classification) ? response.classification.join(', ') : JSON.parse(response.classification).join(', ')}</div></td>
                         </tr>
                     `);
                 },

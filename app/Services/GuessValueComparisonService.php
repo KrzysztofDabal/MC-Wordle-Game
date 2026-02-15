@@ -35,8 +35,4 @@ class GuessValueComparisonService
             return "wrong";
         }
     }
-
-    // public function responseGenerator(array $fields, object $guess, object $daily)
-    // {
-    // }
 }

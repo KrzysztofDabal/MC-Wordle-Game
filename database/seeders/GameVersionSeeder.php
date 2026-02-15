@@ -52,7 +52,7 @@ class GameVersionSeeder extends Seeder
         ]);
         GameVersion::create([
             'release_order' => $release_order++,
-            'version' => '1.0.0 (Beta 1.9)'
+            'version' => '1.0.0'
         ]);
         GameVersion::create([
             'release_order' => $release_order++,

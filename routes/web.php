@@ -19,10 +19,10 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
+Auth::routes();
+
 Route::get('/', [PageController::class, 'index']);
 Route::get('/about', [PageController::class, 'aboutPage'])->name('about');
-
-Auth::routes();
 
 Route::prefix('/mob-guesser')->group(function(){
     Route::get('', [MobGuessingController::class, 'index'])->name('mob_guesser');

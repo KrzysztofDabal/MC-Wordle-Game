@@ -12,7 +12,7 @@ function renderResultTable(){
 }
 
 async function generateResultTable(rows, {prepend = true, replace} = {}){
-    const tbody = document.querySelector('#result_table tbody');
+    const tbody = document.querySelector('#result-table tbody');
 
     const html = prepend ? [...rows].reverse().join('') : rows.join('');
 
@@ -42,13 +42,13 @@ function generateResultRow(guess_name){
             success: function(response){
                 resolve(`
                     <tr>
-                        <td><div class="result_table_cell ${response.name_is_correct}"></div></td>
-                        <td><div class="result_table_cell ${response.game_version_is_correct}"></div></td>
-                        <td><div class="result_table_cell ${response.health_is_correct}"></div></td>
-                        <td><div class="result_table_cell ${response.height_is_correct}"></div></td>
-                        <td><div class="result_table_cell ${response.behavior_is_correct}"></div></td>
-                        <td><div class="result_table_cell ${response.spawn_is_correct}"></div></td>
-                        <td><div class="result_table_cell ${response.classification_is_correct}"></div></td>
+                        <td><div class="result-table-cell ${response.name_is_correct}"></div></td>
+                        <td><div class="result-table-cell ${response.game_version_is_correct}"></div></td>
+                        <td><div class="result-table-cell ${response.health_is_correct}"></div></td>
+                        <td><div class="result-table-cell ${response.height_is_correct}"></div></td>
+                        <td><div class="result-table-cell ${response.behavior_is_correct}"></div></td>
+                        <td><div class="result-table-cell ${response.spawn_is_correct}"></div></td>
+                        <td><div class="result-table-cell ${response.classification_is_correct}"></div></td>
                     </tr>
                 `);
             },

@@ -9,25 +9,14 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <link rel="preload" as="image" href="/img/background.jpg">
-    <link rel="preload" href="/fonts/WebFonts/bf3f245b7cd53caea0cb07d265a64adc.woff2" as="font" type="font/woff2" crossorigin>
-
-
-
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
-    <link rel="stylesheet" href="/css/font.css">
     
     <!-- Style -->
-    <link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/minecraftia" type="text/css"/>
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/autocomplete.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/result.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/table.css') }}">
+    @vite(['resources/css/app.css', 'resources/sass/app.scss', 'resources/js/app.js'])
 
     <!-- Scripts -->
-    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $.ajaxSetup({
@@ -44,7 +33,7 @@
         <nav class="navbar navbar-expand-md">
             <div class="mx-auto text-center">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    <img src="{{ asset('img/logo.png') }}" alt="Girl in a jacket">
+                    <img src="{{ asset('images/logo.png') }}" alt="Mcdle logo" class="logo">
                 </a>
 
             </div>

@@ -1,25 +1,31 @@
 
 .guess_input {
-    padding-left: 42px;
-    height: 40px;
+    padding-left: 46px;
+    height: 56px;
     width: auto;
     min-width: 600px;
     position: relative;
     display: inline-block;
-    font-size: 16px;
+    font-size: 28px;
     font-family: "Minecraftia Regular", monospace;
-    border-bottom:4px solid #b9b9b9;
-  	border-color: #AAA #565656 #565656 #AAA;
-  	outline: 4px solid #000;
-    background-color: #5e5e5e;
+    border-style: solid;
+    /* border-bottom:4px solid #b9b9b9; */
+  	border-color: #535251 #ffffff #ffffff #535251;
+    border-width: 6px;
+  	/* outline: 4px solid #000; */
+    background-color: #8a8a8a;
+    /* background-color: #5e5e5e; */
     color: #b9b9b9;
     box-shadow: none;
   	text-shadow: 3px 3px #4C4C4C;
     box-sizing: border-box;
     background-repeat: no-repeat;
-    background-position: 8px center;
-    background-size: 24px 24px;
-    background-image: url('/img/search_icon.png');
+    background-position: 6px center;
+    background-size: 32px 32px;
+    background-image: url('@/images/search_icon.png');
+}
+.guess_input:focus {
+  outline: none;
 }
 
 .guess_input::placeholder {
