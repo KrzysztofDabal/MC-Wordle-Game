@@ -1,4 +1,4 @@
-<p align="center"><a href="" target="_blank"><img src="public/img/logo.png" width="400" alt="MCDle Logo"></a></p>
+<p align="center"><a href="" target="_blank"><img src="public/images/logo.png" width="400" alt="MCDle Logo"></a></p>
 
 
 ## ⛏️ MCDle – Minecraft Word Game
@@ -69,9 +69,34 @@ The MCDle application was implemented as a hybrid MVC application, combining cla
 - **JavaScript**
 - **REST API (JSON)**
 
+## 🛠 Project Status
+This project is curerently still in progress.
+
+### Implemented Features
+- [x] Initial project setup
+- [x] Daily mob generation system
+- [x] Mob selection and comparison logic
+- [x] Result evaluation
+- [x] Visual comparison table with color-coded parameter feedback:
+    - Green - correct value
+    - Yellow - partial match
+    - Red - incorrect value
+    - Arrows - the value is greater or less
+- [x] End-game summary screen with simplified results table
+- [x] Option to start a new game after completion
+- [x] Base layout and UI structure
+      
+### In Progress
+- [ ] UI/UX improvements and layout refinements
+- [ ] Instruction screen
+- [ ] Expanded end-game screen
+- [ ] Administrator panel (adding, editing, and managing mob pool)
+- [ ] Content management system for daily mob database
+- [ ] More game mods (Blocks and Items guessing)
+
 ## 📸 Screenshots
 
  **Game Select Page**
-![Game Select Page](public/img/screenshots/welcome_page.png)
+![Game Select Page](public/images/screenshots/welcome_page.png)
 **Mob Guessing**
-![Mob Guessing](public/img/screenshots/mob_guessing.jpg)
+![Mob Guessing](public/images/screenshots/mob_guessing.jpg)
