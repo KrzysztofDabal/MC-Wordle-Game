@@ -94,6 +94,67 @@ This project is curerently still in progress.
 - [ ] Content management system for daily mob database
 - [ ] More game mods (Blocks and Items guessing)
 
+## Kroki wymagane do kompilacji, testowego uruchomienia oraz konfiguracji aplikacji: 
+
+
+ 1. Sklonuj repozytorium
+
+        git clone https://github.com/KrzysztofDabal/MC-Wordle-Game.git
+        cd CinemaApp
+
+3. Uruchomienie aplikacji
+ a) Uruchomienie programu XAMPP
+ • Po uruchomieniu programu należy aktywować moduły klikając przycisk start:
+
+   – Apach
+   – MySQL
+   
+ • Uruchomić phpmyadmin klikając przycisk $admin$ przy module MySQL
+ 
+ • Utworzyć nową bazę danych wybierając Database i podając nazwę dla naszej bazy danych, zalecane "laravel"
+ 
+ b) Uruchomienie programu Visual Studio Code
+ 
+ • Po uruchomieniu programu wybieramy opcję otwórz folder, a następnie wybieramy folder "cinema_projekt"
+ 
+ c) Uruchomienie oraz instalacja niezb˛ ednych pakietów/komponentów:
+ 
+ • Należy otworzyć okno terminala wybierając:
+ 
+ Terminal → Nowy terminal
+ 
+ • Skopiować plik .env.example i zmienić jego nazwę na .env
+ 
+         cp .env.example .env
+
+ • Skonfiguruj bazę danych
+Uwaga! jeśli ustawiono inną nazwę bazy danych należy umieścić ją w pliku .env - listing poniżej
+
+         DB_CONNECTION=mysql
+         DB_HOST=127.0.0.1
+         DB_PORT=3306
+         DB_DATABASE=laravel
+         DB_USERNAME=root
+         DB_PASSWORD=
+   
+ • Generujemy nowy klucz aplikacji komendą:
+ 
+     php artisan key:generate
+
+• Uruchamiamy migrację bazy danych komendą:
+
+     php artisan migrate
+ • Uruchamiamy seedowanie bazy komendą:
+
+     php artisan db:seed
+ d) Po zakończonej konfiguracji i instalacji uruchamiamy aplikację komendą:
+ 
+     php artisan serve
+ e) Aplikacja uruchomi się pod adresem:
+ 
+     http://127.0.0.1:8000/
+W celu otwarcia strony należy otworzyć przeglądarkę i po wpisaniu powyższego adresu otworzy się strona główna aplikacji
+
 ## 📸 Screenshots
 
  **Game Select Page**
